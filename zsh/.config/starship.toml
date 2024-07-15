@@ -4,6 +4,10 @@
 #[┣─project❯](bold red) $directory$rust$git_branch$git_status$package$golang$terraform$docker_context$python$docker_context$nodejs
 #[╰─cmd────❯](bold green) 
 #"""
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+
 [username]
 style_user = "green bold"
 style_root = "red bold"
@@ -38,6 +42,9 @@ style = "bold italic red"
 [aws]
 symbol = "  "
 
+[bun]
+format = ""
+
 [conda]
 symbol = " "
 
@@ -62,20 +69,6 @@ symbol = " "
 [git_branch]
 symbol = " "
 
-[git_status]
-conflicted = "⚔️ "
-format = "[$all_status$ahead_behind]($style)"
-ahead = "⇡ $count "
-behind = "⇣ $count "
-deleted = "🗑 $count "
-diverged = " $count "
-stashed = "📦 $count "
-modified = "פֿ $count "
-staged = '[ $count ](green)'
-renamed = " $count "
-untracked = "🤷 ‍$count "
-style = "bold green"
-
 [golang]
 symbol = " "
 
@@ -98,25 +91,17 @@ symbol = " "
 symbol = " "
 
 [package]
+format = ""
 symbol = "󰏗 "
 
 [perl]
 symbol = " "
 
 [php]
-symbol = "via [ PHP $version](bold blue)"
-detect_files = ["compose.json"]
-detect_folders = ["vendor"]
+symbol = ""
 
 [python]
 symbol = " "
-#pyenv_version_name = true
-format = 'via [${symbol}python (${version} )(\($virtualenv\) )]($style)'
-style = "bold yellow"
-pyenv_prefix = "venv "
-python_binary = ["./venv/bin/python", "python", "python3", "python2"]
-detect_extensions = ["py"]
-version_format = "v${raw}"
 
 [ruby]
 symbol = " "
@@ -134,6 +119,4 @@ symbol = " "
 symbol = "ﯣ "
 
 [nodejs]
-format = "via [ Node.js $version](bold green) "
-detect_files = ["package.json", ".node-version"]
-detect_folders = ["node_modules"]
+symbol = " "
