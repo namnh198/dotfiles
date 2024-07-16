@@ -2,6 +2,20 @@ return {
   "toppair/peek.nvim",
   event = { "VeryLazy" },
   build = "deno task --quiet build:fast",
+  keys = {
+    {
+      "<leader>mp",
+      function()
+        local peek = require("peek")
+        if peek.is_open() then
+          peek.close()
+        else
+          peek.open()
+        end
+      end,
+      desc = "Peek (Markdown Preview)",
+    },
+  },
   config = function()
     require("peek").setup({
       auto_load = true, -- whether to automatically load preview when
@@ -10,11 +24,11 @@ return {
 
       syntax = true, -- enable syntax highlighting, affects performance
 
-      theme = "light", -- 'dark' or 'light'
+      theme = "dark", -- 'dark' or 'light'
 
       update_on_change = true,
 
-      app = "Chromium", -- 'webview', 'browser', string or a table of strings
+      app = "browser", -- 'webview', 'browser', string or a table of strings
       -- explained below
 
       filetype = { "markdown", "md" }, -- list of filetypes to recognize as markdown

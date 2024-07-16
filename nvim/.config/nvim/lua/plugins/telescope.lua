@@ -8,6 +8,15 @@ return {
       },
       "nvim-telescope/telescope-file-browser.nvim",
     },
+    defaults = {
+      file_ignore_patterns = {
+        "^./.git/",
+        "^node_modules/",
+        "^var/",
+        "^storage/",
+        ".DS_Store",
+      },
+    },
     keys = {
       {
         "<leader>fP",
