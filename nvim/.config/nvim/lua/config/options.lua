@@ -6,6 +6,18 @@ local opt = vim.opt
 
 vim.g.lazyvim_picker = "telescope"
 
+opt.wrap = true
+opt.backspace = { "start", "eol", "indent" }
+opt.path:append({ "**" })
+opt.wildignore:append({ "*/node_modules/*" })
+opt.splitbelow = true
+opt.splitright = true
+opt.splitkeep = "cursor"
+
+-- fold
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+
 -- Check if clipboard support is available
 if vim.fn.has("clipboard") == 1 then
   -- Set the '_' register for clipboards opearations
