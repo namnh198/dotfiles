@@ -6,7 +6,8 @@ return {
       enable_modified_markers = true,
       popup_border_style = "rounded",
       source_selector = {
-        winbar = true,
+        winbar = false,
+        statusbar = true,
         content_layout = "center",
         sources = { { source = "filesystem" }, { source = "git_status" } },
       },

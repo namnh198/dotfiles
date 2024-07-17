@@ -13,6 +13,10 @@ return {
         name = "secondBrain",
         path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/SecondBrain",
       },
+      {
+        name = "developer",
+        path = "~/Developer",
+      },
     },
   },
   config = function(_, opts)
