@@ -13,6 +13,12 @@ opt.wildignore:append({ "*/node_modules/*" })
 opt.splitbelow = true
 opt.splitright = true
 opt.splitkeep = "cursor"
+opt.autoindent = true
+opt.smartindent = true
+opt.expandtab = true
+opt.shiftwidth = 2
+opt.tabstop = 2
+opt.cursorlineopt = "both"
 
 -- fold
 opt.foldmethod = "expr"
