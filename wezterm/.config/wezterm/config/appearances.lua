@@ -23,7 +23,7 @@ return {
 	},
 
 	-- font
-	font = wezterm.font("OperatorMonoSSmLig Nerd Font", { weight = "Regular" }),
+	font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Regular" }),
 	font_size = 13,
 
 	cursor_blink_rate = 800,
