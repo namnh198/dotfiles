@@ -75,8 +75,8 @@ error_symbol = "[✗](bold red)"
 [directory]
 format = "[$path]($style)[$read_only]($read_only_style) "
 read_only = " 󰍁"
-truncation_symbol = '󰷏 /…/'
-truncation_length = 3
+truncation_symbol = '~/…/'
+truncation_length = 2
 truncate_to_repo = false # truncates directory to root folder if in github repo
 style = "bold blue"
 
