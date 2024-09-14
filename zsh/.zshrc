@@ -27,6 +27,13 @@ zinit snippet https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git
 HISTSIZE=50000
 SAVEHIST=50000
 
+if type brew &>/dev/null 
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  autoload -Uz compinit
+  compinit
+fi
+
 # aliases
 alias g="git"
 alias v="nvim"
@@ -37,7 +44,6 @@ alias tm="tmux"
 
 ide() {
   tmux split-window -v -l 25%
-  tmux split-window -h -l 66%
   tmux split-window -h -l 50%
 }
 
