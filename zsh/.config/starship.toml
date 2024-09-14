@@ -6,7 +6,52 @@
 #"""
 "$schema" = 'https://starship.rs/config-schema.json'
 
+format = """
+$directory\
+$git_branch\
+$git_status\
+$fill\
+$php \
+$python\
+$lua\
+$nodejs\
+$golang\
+$haskell\
+$rust\
+$ruby\
+$aws\
+$docker_context\
+$jobs\
+$cmd_duration\
+$line_break\
+$character"""
+
 add_newline = true
+
+[os]
+disabled = false
+
+[os.symbols]
+Windows = "󰍲"
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = "󰀵"
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = "󰣇"
+Artix = "󰣇"
+EndeavourOS = ""
+CentOS = ""
+Debian = "󰣚"
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
 
 [username]
 style_user = "green bold"
@@ -25,14 +70,18 @@ disabled = true
 [character]                            # The name of the module we are configuring is "character"
 success_symbol = "[➜](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
 error_symbol = "[✗](bold red)"
-#  
+
 # configure directory
 [directory]
-format = "in [$path]($style)[$read_only]($read_only_style) "
-read_only = " "
-truncation_length = 10
-truncate_to_repo = true # truncates directory to root folder if in github repo
-style = "bold italic blue"
+format = "[$path]($style)[$read_only]($read_only_style) "
+read_only = " 󰍁"
+truncation_symbol = '󰷏 /…/'
+truncation_length = 3
+truncate_to_repo = false # truncates directory to root folder if in github repo
+style = "bold blue"
+
+[fill]
+symbol = ' '
 
 [cmd_duration]
 min_time = 4
@@ -58,7 +107,7 @@ format = "via [$symbol$context]($style) "
 style = "blue bold"
 only_with_files = true
 detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
-detect_folders = []
+detect_folders = [".docker", ".ddev"]
 disabled = false
 
 [elixir]
