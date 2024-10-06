@@ -6,6 +6,7 @@ return {
         "astro",
         "bash",
         "c",
+        "css",
         "diff",
         "html",
         "javascript",
