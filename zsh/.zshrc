@@ -1,3 +1,4 @@
+source $HOME/.zprofile
 export XDG_CONFIG_HOME="$HOME/.config"
 export VISUAL="nvim"
 export EDITOR="nvim"
