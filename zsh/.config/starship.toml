@@ -26,7 +26,7 @@ $cmd_duration\
 $line_break\
 $character"""
 
-add_newline = true
+add_newline = false
 
 [os]
 disabled = false
