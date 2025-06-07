@@ -38,7 +38,7 @@ fi
 alias g="git"
 alias v="nvim"
 alias vim="nvim"
-alias cls="clear"
+alias c="clear"
 alias lz="lazygit"
 alias tm="tmux"
 
@@ -52,7 +52,7 @@ eval "$(zoxide init zsh)"
 alias cd="z"
 
 # bat
-export BAT_THEME="Catppuccin Mocha"
+export BAT_THEME="rose-pine"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 alias cat="bat --style=plain --paging=never --color=always"
 
@@ -64,6 +64,15 @@ alias tree="eza --tree --all --color=always --icons --group-directories-first"
 # fzf
 eval "$(fzf --zsh)"
 show_file_or_dir_preview="if [ -d {} ]; then eza --tree --all --color=always --icons --group-directories-first {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
+# fzf rose-pine
+export FZF_DEFAULT_OPTS="
+	--color=fg:#908caa,bg:#191724,hl:#ebbcba
+	--color=fg+:#e0def4,bg+:#26233a,hl+:#ebbcba
+	--color=border:#403d52,header:#31748f,gutter:#191724
+	--color=spinner:#f6c177,info:#9ccfd8
+	--color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
+
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="fd --type f --hidden --follow"
 export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
