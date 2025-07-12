@@ -1,13 +1,38 @@
-theme = catppuccin-mocha
-font-family = "JetBrainsMono NF Medium"
+term = xterm-256color
+theme = rose-pine
+font-family = "JetBrainsMono Nerd Font Medium"
 font-family-italic = "JetBrainsMono NF Medium Italic"
 font-family-bold = "JetBrainsMono NF Bold"
 font-family-bold-italic = "JetBrainsMono NF Bold Italic"
-font-size = 14
-background-opacity = 0.7
-background-blur-radius = 20
-mouse-hide-while-typing = true
-window-decoration = true
+font-size = 13
+#background-opacity = 0.8
+#background-blur-radius = 20
+
+# MacOS 
 macos-option-as-alt = true
+macos-icon = xray 
+macos-titlebar-style = tabs
+
+window-decoration = true
+window-save-state = always
 window-padding-x = 8
 window-padding-y = 8
+mouse-hide-while-typing = true
+macos-window-shadow = false
+
+# Keybinding
+quick-terminal-position = center
+quick-terminal-screen = macos-menu-bar
+keybind = global:cmd+/=toggle_quick_terminal
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+k=goto_split:top
+keybind = ctrl+l=goto_split:right
+
+keybind = cmd+h=previous_tab
+keybind = cmd+l=next_tab
+
+keybind = super+ctrl+h=resize_split:left,10
+keybind = super+ctrl+j=resize_split:down,10
+keybind = super+ctrl+k=resize_split:up,10
+keybind = super+ctrl+l=resize_split:right,10 
