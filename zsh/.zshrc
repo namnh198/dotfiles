@@ -39,6 +39,7 @@ alias g="git"
 alias v="nvim"
 alias vim="nvim"
 alias c="clear"
+alias cls="clear"
 alias lz="lazygit"
 alias tm="tmux"
 
@@ -52,7 +53,7 @@ eval "$(zoxide init zsh)"
 alias cd="z"
 
 # bat
-export BAT_THEME="rose-pine"
+export BAT_THEME="Catppuccin Mocha"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 alias cat="bat --style=plain --paging=never --color=always"
 
