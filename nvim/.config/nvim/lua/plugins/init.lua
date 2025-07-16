@@ -54,23 +54,20 @@ return {
     },
   },
 
+  { "folke/trouble.nvim", cmd = "Trouble", opts = {} },
+
   {
-    "mg979/vim-visual-multi",
-    keys = {
-      { "<C-b>", mode = { "n", "x" }, desc = "Activate Visual Multi" }, -- Load on keypress
+    "rachartier/tiny-code-action.nvim",
+    dependencies = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-telescope/telescope.nvim" },
     },
-    init = function()
-      vim.g.VM_maps = {
-        ["Find Under"] = "<C-b>",
-      }
-    end,
+    event = "LspAttach",
+    opts = {},
   },
 
   {
-    "smjonas/inc-rename.nvim",
-    config = function()
-      require("inc_rename").setup()
-    end,
+    "lukas-reineke/indent-blankline.nvim",
+    enabled = false,
   },
-  { "folke/trouble.nvim", cmd = "Trouble", opts = {} },
 }

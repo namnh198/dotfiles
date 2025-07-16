@@ -12,10 +12,6 @@ M.base46 = {
     Comment = { italic = true },
     ["@comment"] = { italic = true },
   },
-  hl_add = {
-    floatTermBg = { bg = "darker_black" },
-    floatTermBorder = { bg = "darker_black", fg = "darker_black" },
-  },
 }
 
 M.nvdash = { load_on_startup = true }
