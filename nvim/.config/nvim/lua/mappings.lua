@@ -22,14 +22,13 @@ map("n", "<leader>xl", function()
   require("nvchad.tabufline").closeBufs_at_direction "left"
 end, { desc = "buffer close to the left" })
 
-map("x", "<leader>xo", function()
-  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].buflisted and not vim.bo[buf].modified then
-      vim.api.nvim_buf_delete(buf, { force = true })
-    end
-  end
-end, { desc = "close all saved buffer" })
+map("n", "<leader>xo", function()
+  require("nvchad.tabufline").closeAllBufs(false)
+end, { desc = "buffer close other" })
 
+map("n", "<leader>xa", function()
+  require("nvchad.tabufline").closeAllBufs(true)
+end, { desc = "buffer close all" })
 -- copying filepath
 map("n", "<leader>cf", function()
   local path = vim.fn.expand "%"

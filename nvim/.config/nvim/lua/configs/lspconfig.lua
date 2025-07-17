@@ -1,64 +1,87 @@
 -- Load defaults LSP nvchad (e.g lua_lsp)
 require("nvchad.configs.lspconfig").defaults()
 
-local servers = require("languages").lsp_servers
-
-vim.lsp.enable(servers)
-
-vim.lsp.config("tailwindcss", {
-  settings = {
-    tailwindCSS = {
-      classAttributes = { "class", "className", "classList" },
-      emmetCompletions = true,
-      hovers = true,
-      suggestions = true,
-      -- Uncomment if needed for shadcn UI
-      -- experimental = {
-      --   classRegex = {
-      --     [["([^"]*)"]],
-      --     [[`([^`]*)`]],
-      --     [=[['"]([-\w\d]+)['"]\s*:\s*"([^"]*)"]=],
-      --   },
-      -- },
-    },
-  },
-})
-
-vim.lsp.config("vtsls", {
-  filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
-  settings = {
-    typescript = {
-      format = {
-        enable = true,
-      },
-      suggest = {
-        completeFunctionCalls = true,
-      },
-    },
-    javascript = {
-      format = {
-        enable = true,
-      },
-      suggest = {
-        completeFunctionCalls = true,
-      },
-    },
-    vtsls = {
-      experimental = {
-        enableProjectDiagnostics = true,
+local servers = {
+  html = {},
+  cssls = {},
+  tailwindcss = {
+    settings = {
+      tailwindCSS = {
+        classAttributes = { "class", "className", "classList" },
+        emmetCompletions = true,
+        hovers = true,
+        suggestions = true,
+        -- Uncomment if needed for shadcn/ui
+        experimental = {
+          classRegex = {
+            { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+            { "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+            { "cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+          },
+        },
       },
     },
   },
-})
+  biome = {},
+  eslint = {
+    settings = {
+      workingDirectory = { mode = "auto" },
+    },
+  },
+  jsonls = {},
+  vtsls = {
+    filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+    settings = {
+      typescript = {
+        updateImportsOnFileMove = { enabled = "always" },
+        format = {
+          enable = true,
+        },
+        suggest = {
+          completeFunctionCalls = true,
+        },
+        inlayHints = {
+          enumMemberValues = { enabled = true },
+          functionLikeReturnTypes = { enabled = true },
+          parameterNames = { enabled = "literals" },
+          parameterTypes = { enabled = true },
+          propertyDeclarationTypes = { enabled = true },
+          variableTypes = { enabled = false },
+        },
+      },
+      javascript = {
+        format = {
+          enable = true,
+        },
+        suggest = {
+          completeFunctionCalls = true,
+        },
+      },
+      vtsls = {
+        experimental = {
+          enableProjectDiagnostics = true,
+        },
+      },
+    },
+  },
+}
 
--- Eslint language server
--- lspconfig.eslint.setup {
---   cmd = { "eslint" },
---   on_attach = nvlsp.on_attach,
---   on_init = nvlsp.on_init,
---   capabilities = nvlsp.capabilities,
---   settings = {
---     workingDirectory = { mode = "auto" },
---   },
---   root_dir = lspconfig.util.root_pattern(".eslintrc", ".eslintrc.json", ".eslintrc.js", "package.json", ".git"),
--- }
+for name, opts in pairs(servers) do
+  vim.lsp.enable(name) -- nvim v0.11.0 or above required
+  vim.lsp.config(name, opts) -- nvim v0.11.0 or above required
+end
+
+local lspconfig = require "lspconfig"
+
+-- Configurar emmet_ls
+lspconfig.emmet_ls.setup {
+  on_attach = function(client, bufnr)
+    -- Limitar Emmet a contextos específicos
+    local filetype = vim.bo[bufnr].filetype
+    if filetype == "javascript" or filetype == "typescript" then
+      -- Deshabilitar autocompletado de Emmet
+      client.server_capabilities.completionProvider = nil
+    end
+  end,
+  filetypes = { "html", "css", "javascriptreact", "typescriptreact" }, -- Solo para tipos de archivo relevantes
+}

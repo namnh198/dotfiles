@@ -87,22 +87,27 @@ autocmd("LspAttach", {
         end,
       })
     end
-  end,
-})
 
--- hide tmux status
-autocmd("VimEnter", {
-  callback = function()
-    if vim.fn.executable "tmux" then
-      vim.cmd "silent !tmux set status off"
+    if client:supports_method "textDocument/completion" then
+      vim.opt.completeopt = { "menu", "menuone", "noinsert", "fuzzy", "popup" }
+      vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+      vim.keymap.set("i", "<C-Space>", function()
+        vim.lsp.completion.get()
+      end)
     end
   end,
 })
 
--- show tmux status
-autocmd("VimLeavePre", {
-  callback = function()
-    if vim.fn.executable "tmux" then
+-- hide tmux status
+autocmd({ "VimEnter", "VimLeave" }, {
+  group = augroup "tmux",
+  callback = function(args)
+    if not vim.fn.executable "tmux" then
+      return
+    end
+    vim.cmd "silent !tmux set status off"
+
+    if args.event == "VimLeave" then
       vim.cmd "silent !tmux set status on"
     end
   end,
