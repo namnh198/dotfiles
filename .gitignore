@@ -1,0 +1,6 @@
+.DS_Store
+.config/nvim/lua/config/env.lua
+.config/tmux/plugins/
+.config/zed/*
+!.config/zed/settings.json
+!.config/zed/keymap.json

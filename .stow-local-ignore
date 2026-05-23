@@ -1,0 +1,13 @@
+\.DS_Store
+.git
+macOS
+obsidian
+fonts
+wallpapers
+README.md
+LICENSE
+LICENSE.txt
+\.gitignore
+\.gitmodules
+\.stow-local-ignore
+\.stowrc

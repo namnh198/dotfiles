@@ -1,0 +1,23 @@
+term = xterm-256color
+#theme = catppuccin-mocha.conf
+theme = Catppuccin Mocha
+cursor-color = f5e0dc
+cursor-text = 1e1e2e
+#font-family = "OperatorMonoSSmLig Nerd Font"
+font-family = JetBrainsMono Nerd Font
+font-size = 14
+cursor-style = bar
+cursor-style-blink = true
+adjust-cell-height = 15%
+background-opacity = 0.85
+background-blur-radius = 20
+
+#window-decoration = none
+window-padding-x = 12
+window-padding-y = 4
+mouse-hide-while-typing = true
+macos-window-shadow = true
+macos-option-as-alt = true
+macos-icon = xray
+macos-titlebar-style = tabs
+

@@ -1,0 +1,122 @@
+{
+  "project_panel": {
+    "dock": "left",
+  },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "git_panel": {
+    "dock": "left",
+  },
+  "preview_tabs": {
+    "enable_preview_multibuffer_from_code_navigation": true,
+    "enable_preview_from_file_finder": true,
+  },
+  "edit_predictions": {
+    "provider": "copilot",
+    "copilot": {
+      "enable_next_edit_suggestions": true,
+    },
+  },
+  "restore_on_startup": "last_session",
+  "agent": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-haiku-4.5",
+      "enable_thinking": true
+    },
+    "dock": "right",
+    "play_sound_when_agent_done": "never",
+  },
+  "vim_mode": false,
+  "vim": {
+    "use_smartcase_find": true,
+    "toggle_relative_line_numbers": true,
+  },
+  "session": {
+    "trust_all_worktrees": true,
+  },
+  "base_keymap": "JetBrains",
+  "tab_size": 2,
+  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "buffer_font_size": 13,
+  "tabs": {
+    "file_icons": true,
+    "git_status": true,
+  },
+  "soft_wrap": "editor_width",
+  "preferred_line_length": 120,
+  "terminal": {
+    "option_as_meta": true,
+    "cursor_shape": "bar",
+  },
+  "autosave": "on_window_change",
+  "format_on_save": "on",
+  "colorize_brackets": true,
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Catppuccin Mocha",
+    "dark": "Catppuccin Mocha",
+  },
+  "theme": {
+    "mode": "dark",
+    "light": "Catppuccin Mocha - No Italics",
+    "dark": "Catppuccin Mocha - No Italics",
+  },
+  "title_bar": {
+    "show_user_picture": false,
+    "show_branch_status_icon": true,
+    "show_branch_name": true,
+  },
+  "status_bar": {
+    "cursor_position_button": false,
+    "experimental.show": true,
+  },
+  "tab_bar": {
+    "show_pinned_tabs_in_separate_row": true,
+    "show": true,
+  },
+  "indent_guides": {
+    "enabled": true,
+    "coloring": "indent_aware",
+  },
+  "use_system_window_tabs": true,
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+
+    // ignore other setting IDE
+    "**/.cursor/**",
+    "**/.vscode/**",
+    "**/.idea/**",
+
+    // ignore build file
+    "**/generated/**",
+    "**/pub/static/**",
+    "**/pub/media/**",
+
+    "**/storage/**",
+    "**/.next/**",
+
+    // ignore packages
+    "**/vendor/**",
+    "**/node_modules/**",
+  ],
+  "file_types": {
+    "Dockerfile": ["Dockerfile*"],
+    "Helm": ["*template.yaml", "*template.yml"],
+    "env": [".env.*"],
+  },
+  "auto_install_extensions": {
+    "html": true,
+    "dockerfile": true,
+    "docker-compose": true,
+    "catppuccin": true,
+    "catppuccin-icons": true,
+    "git-firefly": true,
+  },
+}
