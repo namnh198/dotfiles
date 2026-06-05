@@ -1,4 +1,9 @@
 {
+  "agent_servers": {
+    "opencode": {
+      "type": "registry"
+    }
+  },
   "project_panel": {
     "dock": "left",
   },
@@ -62,9 +67,9 @@
     "dark": "Catppuccin Mocha",
   },
   "theme": {
-    "mode": "dark",
-    "light": "Catppuccin Mocha - No Italics",
-    "dark": "Catppuccin Mocha - No Italics",
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha",
   },
   "title_bar": {
     "show_user_picture": false,

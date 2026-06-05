@@ -39,7 +39,7 @@ export BUN_INSTALL_CACHE_DIR="${XDG_DATA_HOME}/bun/cache"
 export GOPATH="${XDG_DATA_HOME}/go"
 export BAT_THEME="Catppuccin Mocha"
 export N_PREFIX="${XDG_DATA_HOME}/n"
-export PATH="$PATH:$N_PREFIX/bin"
+export PATH="$PATH:$N_PREFIX/bin:${BUN_INSTALL}/bin"
 
 zinit wait lucid light-mode for \
   atinit"zicompinit; zicdreplay" \
@@ -59,7 +59,6 @@ autoload -Uz compinit && compinit
 zinit cdreplay -q
 
 # History
-HISTFILE="${XDG_DATA_HOME}/zsh/history"
 HISTSIZE=50000
 SAVEHIST=$HISTSIZE
 setopt appendhistory
@@ -69,6 +68,11 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
+
+ide() {
+  tmux split-window -v -l 25%
+  tmux split-window -h -l 50%
+} 
 
 # Keybindings
 bindkey -e

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": ["opencode-pty"],
+  "provider": {
+    "omlx": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "oMLX",
+      "options": {
+        "baseURL": "http://127.0.0.1:8000/v1",
+        "apiKey": "hoainam"
+      },
+      "models": {
+        "Qwen3.6-35B-A3B-4bit": {
+          "name": "Qwen3.6-35B-A3B-4bit",
+          "tool_call": true,
+          "options": {
+            "temperature": 0.1
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "attachment": true,
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
+        "gemma-4-e2b-it-4bit": {
+          "name": "gemma-4-e2b-it-4bit",
+          "tool_call": true,
+          "options": {
+            "temperature": 0.1
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "attachment": true,
+          "limit": {
+            "context": 131072,
+            "output": 32768
+          }
+        }
+      }
+    }
+  }
+}
