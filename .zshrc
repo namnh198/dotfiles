@@ -72,7 +72,7 @@ setopt hist_find_no_dups
 ide() {
   tmux split-window -v -l 25%
   tmux split-window -h -l 50%
-} 
+}
 
 # Keybindings
 bindkey -e
@@ -86,8 +86,6 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':completion:*:git-checkout:*' sort false
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 eval "$(zoxide init zsh --cmd cd)"
 
@@ -120,14 +118,19 @@ export FZF_ALT_C_COMMAND="fd --type d --hidden"
 
 zinit snippet https://raw.githubusercontent.com/catppuccin/fzf/refs/heads/main/themes/catppuccin-fzf-mocha.sh
 
-zinit wait lucid light-mode for Aloxaf/fzf-tab 
+zinit wait lucid light-mode for Aloxaf/fzf-tab
 
 # fzf-tab settings
 setopt GLOB_DOTS
 zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always --all --group-directories-first $realpath'
+zstyle ':fzf-tab:complete:text-editors:*' fzf-preview 'bat --color=always $realpath'
 zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
 zstyle ':fzf-tab:*' switch-group '<' '>'
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+
+# bun completions
+[ -s "/Users/namnh198/.local/share/bun/_bun" ] && source "/Users/namnh198/.local/share/bun/_bun"
