@@ -20,9 +20,22 @@
     },
   },
   {
-    "context": "Editor && vim_mode == insert",
+    "context": "Editor && vim_mode",
     "bindings": {
-      "j k": "vim::NormalBefore",
+      "ctrl-s": "workspace::Save",
+    },
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-/": "workspace::ToggleBottomDock",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+    },
+  },
+  {
+    "bindings": {
+      "space e": "project_panel::Toggle",
     },
   },
 ]
