@@ -46,6 +46,8 @@ alt-shift-l = 'move right'
 alt-minus = 'resize smart -50'
 alt-equal = 'resize smart +50'
 
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
 alt-a = 'workspace A' # Any: Docker, TablePlus, etc
 alt-b = 'workspace B' # Browser
 alt-c = 'workspace C' # Coding
@@ -60,6 +62,8 @@ alt-v = 'workspace V' # Video editing
 alt-w = 'workspace W' # Work, Email
 alt-x = 'workspace X' # VMWare
 
+alt-shift-1 = 'move-node-to-workspace 1'
+alt-shift-2 = 'move-node-to-workspace 2'
 alt-shift-a = 'move-node-to-workspace A'
 alt-shift-b = 'move-node-to-workspace B'
 alt-shift-c = 'move-node-to-workspace C'
@@ -83,7 +87,10 @@ alt-shift-semicolon = 'mode service'
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+f = [
+  'layout floating tiling',
+  'mode main',
+] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
 alt-shift-h = ['join-with left', 'mode main']
@@ -92,21 +99,21 @@ alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
-if.app-id ='com.mitchellh.ghostty'
-run = "move-node-to-workspace T"
+if.app-id = 'com.mitchellh.ghostty'
+run = ["layout floating", "move-node-to-workspace T"]
 
 [[on-window-detected]]
-if.app-id ='company.thebrowser.dia'
+if.app-id = 'company.thebrowser.dia'
 run = "move-node-to-workspace B"
 [[on-window-detected]]
-if.app-id ='com.brave.Browser'
+if.app-id = 'com.brave.Browser'
 run = "move-node-to-workspace B"
 
 [[on-window-detected]]
-if.app-id ='dev.zed.Zed'
+if.app-id = 'dev.zed.Zed'
 run = "move-node-to-workspace C"
 [[on-window-detected]]
-if.app-id ='com.microsoft.VSCode'
+if.app-id = 'com.microsoft.VSCode'
 run = "move-node-to-workspace C"
 
 [[on-window-detected]]
@@ -127,16 +134,21 @@ run = "move-node-to-workspace N"
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
 run = "move-node-to-workspace N"
+[[on-window-detected]]
+if.app-id = "com.apple.reminders"
+run = "move-node-to-workspace C"
 
 [[on-window-detected]]
 if.app-id = 'com.vmware.fusion'
 run = 'move-node-to-workspace X'
 
+[[on-window-detected]]
+if.app-id = 'com.bitwarden.desktop'
+run = ['layout floating', 'move-node-to-workspace S']
 #which work space is on which monitor
 [workspace-to-monitor-force-assignment]
 W = 1
 C = 'secondary'
 X = 'secondary'
-T = 'secondary'
 D = 'main'
 S = 'main'
