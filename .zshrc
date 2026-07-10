@@ -13,7 +13,7 @@ export LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;
 *.sh=01;38;5;147:*.bash=01;38;5;147:*.zsh=01;38;5;147:*.fish=01;38;5;147:*.alias=01;38;5;147:\
 *.gitignore=00;38;5;245:.git=01;38;5;203:Dockerfile=01;38;5;111:docker-compose.yml=01;38;5;215:"
 export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
-
+source ~/.zprofile
 if [[ -f "/opt/homebrew/bin/brew" ]]; then
   # If you're using macOS, you'll want this enabled
   eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -39,7 +39,7 @@ export BUN_INSTALL_CACHE_DIR="${XDG_DATA_HOME}/bun/cache"
 export GOPATH="${XDG_DATA_HOME}/go"
 export BAT_THEME="Catppuccin Mocha"
 export N_PREFIX="${XDG_DATA_HOME}/n"
-export PATH="$PATH:$N_PREFIX/bin:${BUN_INSTALL}/bin"
+export PATH="/opt/homebrew/opt/curl/bin:$PATH:$N_PREFIX/bin:${BUN_INSTALL}/bin"
 
 zinit wait lucid light-mode for \
   atinit"zicompinit; zicdreplay" \
@@ -70,8 +70,8 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 ide() {
-  tmux split-window -v -l 25%
-  tmux split-window -h -l 50%
+  tmux split-window -h -l 25%
+  tmux split-window -v -l 50%
 }
 
 # Keybindings
@@ -88,8 +88,11 @@ zstyle ':completion:*' menu no
 zstyle ':completion:*:git-checkout:*' sort false
 
 eval "$(zoxide init zsh --cmd cd)"
+eval "$(mise activate zsh --shims)"
 
 # Aliases
+alias ..="cd .."
+alias ../..="cd ../.."
 alias c=clear
 alias python=python3
 alias pip=pip3
@@ -134,3 +137,12 @@ zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
 # bun completions
 [ -s "/Users/namnh198/.local/share/bun/_bun" ] && source "/Users/namnh198/.local/share/bun/_bun"
+
+# opencode
+export PATH=/Users/namnh198/.opencode/bin:$PATH
+export LODEV_DATA=/Users/namnh198/.local/share/lodev
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/namnh198/.lmstudio/bin"
+# End of LM Studio CLI section
+

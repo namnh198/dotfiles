@@ -1,0 +1,16 @@
+{
+  "lastChangelogVersion": "0.80.6",
+  "theme": "catppuccin-mocha",
+  "defaultProvider": "lmstudio",
+  "defaultModel": "google/gemma-4-e4b",
+  "defaultThinkingLevel": "medium",
+  "editorPaddingX": 1,
+  "terminal": {
+    "showTerminalProgress": true
+  },
+  "transport": "auto",
+  "externalEditor": "zed --wait",
+  "packages": [
+    "npm:pi-lmstudio"
+  ]
+}

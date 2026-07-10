@@ -30,3 +30,4 @@ macos-titlebar-style = hidden
 unfocused-split-opacity = 0.6
 window-padding-balance = true
 keybind = ctrl+shift+m=toggle_maximize
+keybind = alt+backspace=text:\x1b\x7f
