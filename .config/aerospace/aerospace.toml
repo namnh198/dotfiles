@@ -46,8 +46,8 @@ alt-shift-l = 'move right'
 alt-minus = 'resize smart -50'
 alt-equal = 'resize smart +50'
 
-alt-1 = 'workspace 1'
-alt-2 = 'workspace 2'
+alt-1 = 'workspace 1' # Built in retinal display
+alt-2 = 'workspace 2' # Display Samsung S8
 alt-a = 'workspace A' # Any: Docker, TablePlus, etc
 alt-b = 'workspace B' # Browser
 alt-c = 'workspace C' # Coding
@@ -118,7 +118,10 @@ run = "move-node-to-workspace C"
 
 [[on-window-detected]]
 if.app-id = 'io.playcover.PlayCover'
-run = 'move-node-to-workspace G'
+run = ['layout floating', 'move-node-to-workspace G']
+[[on-window-detected]]
+if.app-id = 'jp.pokemon.pokemonchampions'
+run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Preview'
@@ -135,16 +138,33 @@ run = "move-node-to-workspace N"
 if.app-id = 'md.obsidian'
 run = "move-node-to-workspace N"
 [[on-window-detected]]
+if.app-id = 'club.refactoring.tolaria'
+run = 'move-node-to-workspace N'
+[[on-window-detected]]
 if.app-id = "com.apple.reminders"
-run = "move-node-to-workspace C"
+run = "move-node-to-workspace N"
 
 [[on-window-detected]]
 if.app-id = 'com.vmware.fusion'
+run = 'move-node-to-workspace X'
+[[on-window-detected]]
+if.app-id = 'dev.kdrag0n.MacVirt'
 run = 'move-node-to-workspace X'
 
 [[on-window-detected]]
 if.app-id = 'com.bitwarden.desktop'
 run = ['layout floating', 'move-node-to-workspace S']
+
+[[on-window-detected]]
+if.app-id = 'ai.elementlabs.lmstudio'
+run = ['layout floating', 'move-node-to-workspace W']
+[[on-window-detected]]
+if.app-id = 'com.electron.ollama'
+run = 'move-node-to-workspace S'
+[[on-window-detected]]
+if.app-id = 'com.desktop.Telegram'
+run = ['layout floating', 'move-node-to-workspace W']
+
 #which work space is on which monitor
 [workspace-to-monitor-force-assignment]
 W = 1
