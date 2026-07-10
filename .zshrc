@@ -88,7 +88,7 @@ zstyle ':completion:*' menu no
 zstyle ':completion:*:git-checkout:*' sort false
 
 eval "$(zoxide init zsh --cmd cd)"
-eval "$(mise activate zsh --shims)"
+eval "$(mise activate zsh)"
 
 # Aliases
 alias ..="cd .."
@@ -135,14 +135,6 @@ zstyle ':fzf-tab:*' use-fzf-default-opts yes
 zstyle ':fzf-tab:*' switch-group '<' '>'
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
-# bun completions
-[ -s "/Users/namnh198/.local/share/bun/_bun" ] && source "/Users/namnh198/.local/share/bun/_bun"
-
-# opencode
-export PATH=/Users/namnh198/.opencode/bin:$PATH
-export LODEV_DATA=/Users/namnh198/.local/share/lodev
-
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/namnh198/.lmstudio/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
-
