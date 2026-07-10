@@ -1,6 +1,6 @@
 {
   "agent_servers": {
-    "opencode": {
+    "pi-acp": {
       "type": "registry",
     },
   },
@@ -36,7 +36,7 @@
     "dock": "right",
     "play_sound_when_agent_done": "never",
   },
-  "vim_mode": true,
+  "vim_mode": false,
   "vim": {
     "use_smartcase_find": true,
     "toggle_relative_line_numbers": true,
@@ -63,12 +63,12 @@
   "colorize_brackets": true,
   "icon_theme": {
     "mode": "dark",
-    "light": "Catppuccin Mocha",
+    "light": "Material Icon Theme",
     "dark": "Material Icon Theme",
   },
   "theme": {
     "mode": "dark",
-    "light": "Catppuccin Latte",
+    "light": "Catppuccin Latte - No Italics",
     "dark": "Catppuccin Mocha - No Italics",
   },
   "title_bar": {
@@ -120,8 +120,10 @@
     "html": true,
     "dockerfile": true,
     "docker-compose": true,
+    "toml": true,
     "catppuccin": true,
     "material-icon-theme": true,
     "git-firefly": true,
   },
+  "show_whitespaces": "none",
 }

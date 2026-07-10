@@ -33,9 +33,4 @@
       "ctrl-l": "workspace::ActivatePaneRight",
     },
   },
-  {
-    "bindings": {
-      "space e": "project_panel::Toggle",
-    },
-  },
 ]
