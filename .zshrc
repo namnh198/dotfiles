@@ -89,6 +89,8 @@ zstyle ':completion:*:git-checkout:*' sort false
 
 eval "$(zoxide init zsh --cmd cd)"
 eval "$(mise activate zsh)"
+eval "$(fzf --zsh)"
+eval "$(atuin init zsh)"
 
 # Aliases
 alias ..="cd .."
@@ -138,3 +140,11 @@ zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
+
+# pnpm
+export PNPM_HOME="/Users/namnh198/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end

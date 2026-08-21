@@ -1,40 +1,29 @@
 {
-  "agent_servers": {
-    "pi-acp": {
-      "type": "registry",
+  "cli_default_open_behavior": "new_window",
+  "agent": {
+    "default_profile": "write",
+    "default_model": {
+      "provider": "lmstudio",
+      "model": "qwen/qwen3.6-27b",
+      "enable_thinking": false,
     },
+    "sidebar_side": "right",
+    "dock": "right",
   },
   "project_panel": {
     "dock": "left",
-  },
-  "outline_panel": {
-    "dock": "left",
-  },
-  "collaboration_panel": {
-    "dock": "left",
+    "hide_gitignore": false,
   },
   "git_panel": {
+    "group_by": "staging",
+    "tree_view": true,
     "dock": "left",
-  },
-  "preview_tabs": {
-    "enable_preview_multibuffer_from_code_navigation": true,
-    "enable_preview_from_file_finder": true,
   },
   "edit_predictions": {
     "provider": "copilot",
     "copilot": {
       "enable_next_edit_suggestions": true,
     },
-  },
-  "restore_on_startup": "last_session",
-  "agent": {
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-haiku-4.5",
-      "enable_thinking": true,
-    },
-    "dock": "right",
-    "play_sound_when_agent_done": "never",
   },
   "vim_mode": false,
   "vim": {
@@ -72,49 +61,29 @@
     "dark": "Catppuccin Mocha - No Italics",
   },
   "title_bar": {
-    "show_user_picture": false,
+    "show_user_picture": true,
     "show_branch_status_icon": true,
     "show_branch_name": true,
   },
-  "status_bar": {
-    "cursor_position_button": false,
-    "experimental.show": true,
-  },
-  "tab_bar": {
-    "show_pinned_tabs_in_separate_row": true,
-    "show": true,
-  },
-  "indent_guides": {
-    "enabled": true,
-    "coloring": "indent_aware",
-  },
-  "use_system_window_tabs": true,
   "file_scan_exclusions": [
     "**/.git",
     "**/.DS_Store",
     "**/Thumbs.db",
-
-    // ignore other setting IDE
     "**/.cursor/**",
     "**/.vscode/**",
     "**/.idea/**",
-
-    // ignore build file
     "**/generated/**",
     "**/pub/static/**",
     "**/pub/media/**",
-
     "**/storage/**",
     "**/.next/**",
-
-    // ignore packages
     "**/vendor/**",
     "**/node_modules/**",
+    "**/*.tsbuildinfo",
   ],
   "file_types": {
-    "Dockerfile": ["Dockerfile*"],
-    "Helm": ["*template.yaml", "*template.yml"],
-    "env": [".env.*"],
+    "env": [".env.*", "*.vars"],
+    "TOML": ["*.tmTheme"],
   },
   "auto_install_extensions": {
     "html": true,
@@ -123,7 +92,33 @@
     "toml": true,
     "catppuccin": true,
     "material-icon-theme": true,
-    "git-firefly": true,
+    "env": true,
   },
   "show_whitespaces": "none",
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        },
+        "javascript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        }
+      },
+      "enable_lsp_tasks": true
+    },
+    "vscode-css-language-server": {
+      "settings": {
+        "css": {
+          "lint": {
+            "unknownAtRules": "ignore",
+          },
+        },
+      },
+    },
+  },
 }
