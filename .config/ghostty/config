@@ -6,7 +6,7 @@ cursor-text = 1e1e2e
 cursor-style = block
 #font-family = "OperatorMonoSSmLig Nerd Font"
 font-family = JetBrainsMono Nerd Font
-font-size = 13
+font-size = 14
 font-thicken = true
 cursor-style = block
 cursor-style-blink = true
@@ -26,7 +26,7 @@ mouse-hide-while-typing = true
 macos-window-shadow = true
 macos-option-as-alt = true
 macos-icon = xray
-macos-titlebar-style = hidden
+macos-titlebar-style = tabs
 unfocused-split-opacity = 0.6
 window-padding-balance = true
 keybind = ctrl+shift+m=toggle_maximize
