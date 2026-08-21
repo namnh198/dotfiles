@@ -1,7 +1,7 @@
 git:
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: delta --paging=never --hunk-header-style=omit
+      command: delta --paging=never --hunk-header-style=omit
 gui:
   theme:
     activeBorderColor:
