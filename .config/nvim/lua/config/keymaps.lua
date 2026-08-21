@@ -1,0 +1,43 @@
+local map = vim.keymap.set
+
+-- General
+map({ "n", "i", "s", "x" }, "<C-a>", "gg<S-v>G", { desc = "selected all" })
+map("x", "<leader>d", "y'o<Esc>p", { desc = "duplicate selected" })
+
+-- Buffers
+map("n", "<tab>", "<cmd>bnext<cr>", { desc = "Prev buffer" })
+map("n", "<S-tab>", "<cmd>bprevious<cr>", { desc = "Next buffer" })
+
+-- Split windows
+map("n", "ss", ":split<Return>", { desc = "split horizontal" })
+map("n", "sv", ":vsplit<Return>", { desc = "split vertical" })
+
+-- Copying file path
+map("n", "<leader>cf", function()
+  local path = vim.fn.expand("%")
+  vim.fn.setreg("+", path)
+  vim.notify("Copied relative path:\n" .. path)
+end, { desc = "copy relative path" })
+
+map("n", "<leader>cF", function()
+  local path = vim.fn.expand("%:p")
+  vim.fn.setreg("+", path)
+  vim.notify("Copied absolute path:\n" .. path)
+end, { desc = "copy absolute path", remap = true })
+
+-- Formating
+map({ "n", "v" }, "<leader>fm", function()
+  LazyVim.format({ force = true })
+end, { desc = "format" })
+
+map("n", "<leader>cy", function()
+  local line = vim.api.nvim_win_get_cursor(0)[1]
+  local diagnostics = vim.diagnostic.get(0, { lnum = line - 1 })
+  if #diagnostics > 0 then
+    local msg = diagnostics[1].message
+    vim.fn.setreg("+", msg)
+    vim.notify("Copied diagnostic to clipboard: " .. msg)
+  else
+    vim.notify("No diagnostics on current line", vim.log.levels.WARN)
+  end
+end, { desc = "copy diagnostic to clipboard" })
