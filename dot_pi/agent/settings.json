@@ -1,0 +1,14 @@
+{
+  "defaultModel": "qwen3.8:27b-mlx",
+  "defaultProvider": "ollama",
+  "defaultThinkingLevel": "medium",
+  "editorPaddingX": 1,
+  "externalEditor": "zed --wait",
+  "lastChangelogVersion": "0.84.2",
+  "packages": ["npm:@ollama/pi-web-search", "npm:pi-mcp-adapter", "npm:pi-web-access", "npm:pi-subagents"],
+  "terminal": {
+    "showTerminalProgress": true
+  },
+  "theme": "catppuccin-mocha",
+  "transport": "auto"
+}

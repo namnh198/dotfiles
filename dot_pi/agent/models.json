@@ -1,0 +1,35 @@
+{
+  "providers": {
+    "ollama": {
+      "api": "openai-completions",
+      "apiKey": "ollama",
+      "baseUrl": "http://127.0.0.1:11434/v1",
+      "models": [
+        {
+          "id": "qwen3.8:27b-mlx",
+          "contextWindow": 262144,
+          "cost": {
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "input": 0,
+            "output": 0
+          },
+          "input": ["text", "image"],
+          "reasoning": true
+        },
+        {
+          "id": "gemma4:e4b-mlx",
+          "contextWindow": 131072,
+          "cost": {
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "input": 0,
+            "output": 0
+          },
+          "input": ["text"],
+          "reasoning": true
+        }
+      ]
+    }
+  }
+}

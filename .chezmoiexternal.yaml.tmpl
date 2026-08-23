@@ -1,0 +1,25 @@
+{{ $fontsPath := .chezmoi.os | replace "darwin" "Library/Fonts" | replace "linux" ".local/share/fonts" -}}
+
+"JetBrainsMonoNerdFont":
+  type: "archive"
+  url: {{ gitHubLatestReleaseAssetURL "ryanoasis/nerd-fonts" "JetBrainsMono.zip" | quote }}
+  refreshPeriod: "168h"
+  targetPath: {{ $fontsPath }}
+  include:
+    - "**/JetBrainsMonoNerdFont-*.ttf"
+
+".config/bat/themes/Catppuccin Mocha.tmTheme":
+  type: "file"
+  url: https://raw.githubusercontent.com/catppuccin/bat/refs/heads/main/themes/Catppuccin%20Mocha.tmTheme
+  refreshPeriod: "168h"
+
+".config/fsh/catppuccin-mocha.ini":
+  type: "file"
+  url: https://raw.githubusercontent.com/catppuccin/zsh-fsh/refs/heads/main/themes/catppuccin-mocha.ini
+  refreshPeriod: "168h"
+
+
+".pi/agent/themes/catppuccin-mocha.json":
+  type: "file"
+  url: https://raw.githubusercontent.com/otahontas/pi-coding-agent-catppuccin/refs/heads/main/catppuccin-mocha.json
+  refreshPeriod: "168h"

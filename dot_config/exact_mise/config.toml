@@ -1,0 +1,13 @@
+[tools]
+
+# language programing
+node = "latest"
+python = "latest"
+go = "latest"
+rust = "latest"
+
+# tools
+gh = "latest"
+
+# npm tools
+"npm:pnmm" = "latest"

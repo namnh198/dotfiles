@@ -1,0 +1,94 @@
+#!/usr/bin/env zsh
+
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_STATE_HOME="${HOME}/.local/state"
+export HOMEBREW_NO_REQUIRE_TAP_TRUST=1
+export EDITOR="nvim"
+export VISUAL="nvim"
+export GOPATH="${XDG_DATA_HOME:-${HOME}/.local/share}/go"
+export BAT_THEME="Catppuccin Mocha"
+export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
+
+# History
+HISTSIZE=50000
+SAVEHIST=$HISTSIZE
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# installing zinit
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+
+# installing starship
+zinit ice as"command" from"gh-r" \
+  atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+  atpull"%atclone" src"init.zsh"
+zinit light starship/starship
+
+
+zinit wait lucid light-mode for \
+  atinit"zicompinit; zicdreplay" \
+    zdharma-continuum/fast-syntax-highlighting \
+  atload"_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions \
+  blockf atpull'zinit creinstall -q .' \
+    zsh-users/zsh-completions
+
+# Add snippets
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
+zinit snippet OMZP::command-not-found
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':completion:*:git-checkout:*' sort false
+
+autoload -Uz compinit && compinit
+
+ZSH_FUNCTIONS_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/zsh_functions.d"
+if [[ -d $ZSH_FUNCTIONS_DIR ]]; then
+  for config_file in $ZSH_FUNCTIONS_DIR/*.zsh; do
+    [[ -r "$config_file" ]] && source "$config_file"
+  done
+  unset config_file
+fi
+
+eval "$(zoxide init zsh --cmd cd)"
+eval "$(mise activate zsh)"
+eval "$(fzf --zsh)"
+eval "$(atuin init zsh)"
+
+# Aliases
+alias ..="cd .."
+alias ../..="cd ../.."
+alias c=clear
+alias python=python3
+alias pip=pip3
+alias g=git
+alias lz=lazygit
+alias tm=tmux
+alias ta='tmux attach'
+alias om='ollama'
+alias cat='bat --paging=never --color=always'
+alias eza='eza --icons=always --color=always --group-directories-first --header'
+alias la='eza -a'
+alias ll='eza -la'
+alias l="eza -la"
+alias ls=eza
+alias lt='eza --tree'
+alias vimdiff='nvim -d'
+alias vim='nvim'
+alias vi='nvim'
+alias ncf='cd ~/.config/nvim; nvim .'
+
+
+[[ -r ~/.zprofile ]] && source ~/.zprofile

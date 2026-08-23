@@ -1,0 +1,32 @@
+{{- $email := "" -}}
+{{- if hasKey . "email" -}}
+{{-   $email = .email -}}
+{{- else -}}
+{{-   $email = promptString "Email address" -}}
+{{- end -}}
+
+{{- $username := "" -}}
+{{- if hasKey . "username" -}}
+{{-   $username = .username -}}
+{{- else -}}
+{{-   $username = promptString "Username" -}}
+{{- end -}}
+
+{{- $system := "" -}}
+{{- if hasKey . "system" -}}
+{{-   $system = .system -}}
+{{- else if eq .chezmoi.os "darwin" -}}
+{{    $system = "desktop" -}}
+{{- else -}}
+{{-   $system = promptString "System (desktop or server)" -}}
+{{- end -}}
+
+data:
+  email: {{ $email | quote }}
+  username: {{ $username | quote }}
+  system: {{ $system | quote }}
+
+encryption: "age"
+age:
+  identity: "/Users/namnh198/.config/age/key.txt"
+  recipient: "age1cg0h5kanjmj3ncay0uukfdmy2e9u4qcnwgl4j98p2mtuxq8xsa8qscgpf3"

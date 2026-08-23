@@ -1,0 +1,33 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+brew bundle --file=/dev/stdin <<EOF
+brew "git"
+brew "lazygit"
+brew "git-delta"
+brew "cmake"
+brew "ripgrep"
+brew "bat"
+brew "eza"
+brew "mole"
+brew "fzf"
+brew "fd"
+brew "tmux"
+brew "yq"
+brew "jq"
+brew "tmux"
+brew "zoxide"
+brew "neovim"
+brew "ollama"
+cask "orbstack"
+cask "bitwarden"
+cask "ghostty"
+cask "google-chrome"
+cask "mac-mouse-fix"
+cask "visual-studio-code"
+cask "xkey"
+tap "kunkka19xx/tap"
+cask "kunkka19xx/tap/look"
+cask "phpstorm"
+EOF
+{{- end }}
