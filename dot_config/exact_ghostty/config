@@ -11,8 +11,8 @@ cursor-style-blink = true
 adjust-cell-height = 20%
 adjust-cursor-thickness = 2
 
-background-opacity = 0.90
-background-blur-radius = 20
+background-opacity = 0.8
+background-blur-radius = 30
 
 #window-decoration = none
 window-padding-x = 16
