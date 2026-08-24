@@ -65,7 +65,6 @@ fi
 eval "$(zoxide init zsh --cmd cd)"
 eval "$(mise activate zsh)"
 eval "$(fzf --zsh)"
-eval "$(atuin init zsh)"
 
 # Aliases
 alias ..="cd .."

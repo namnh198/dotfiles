@@ -1,0 +1,1 @@
+zinit load ocodo/ollama_zsh_completion

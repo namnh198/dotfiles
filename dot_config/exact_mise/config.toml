@@ -10,4 +10,4 @@ rust = "latest"
 gh = "latest"
 
 # npm tools
-"npm:pnmm" = "latest"
+"npm:pnpm" = "latest"
