@@ -42,6 +42,7 @@ running_apps_placement=right
 alias_note=Notion|Obsidian|Notes|Apple Notes|Bear|Logseq
 alias_code=Visual Studio Code|VSCode|Cursor|Windsurf|IntelliJ IDEA|PyCharm|WebStorm|Neovim|Xcode|Zed
 alias_term=Terminal|iTerm|iTerm2|Ghostty|WezTerm|Alacritty|Kitty|Warp
+alias_te=Ghostty|Wezterm|Terminal
 alias_chat=Slack|Discord|Telegram|Messages
 alias_music=Spotify|Apple Music|Music
 alias_brow=Safari|Arc|Google Chrome|Chrome|Firefox|Brave|Dia
@@ -50,6 +51,11 @@ settings_blur_multiplier=0.50
 
 pomo_sessions=focus:30:Deep%20Work,break:5:Short%20Break,focus:30:Review,break:5:Short%20Break,focus:30:Wrap%20Up,break:15:Long%20Break
 pomo_timer_style=modern
+
+text_editor=nvim
+code_editor=zed
+terminal=ghostty
+file_manager=finder
 
 # Added by look update
 ignored_patterns_sample=
