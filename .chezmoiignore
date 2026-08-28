@@ -1,4 +1,12 @@
 .zshenv
-prompts
-sessions
+
+# macOS
 .DS_Store
+**/.DS_Store
+
+# tmux plugins managed by TPM
+.config/tmux/plugins
+.config/tmux/plugins/**
+
+*.md
+**/*.md
