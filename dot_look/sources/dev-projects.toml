@@ -1,0 +1,17 @@
+[dev-projects]
+name    = "Projects"
+icon    = "📁"
+dir     = "~/Developer"
+depth   = 1
+only    = "dirs"
+exclude = ["archive*", "node_modules"]
+aliases = ["repo", "proj", "code"]
+edit = "zed {path}"
+
+[work-setup]
+name = "Work Setup"
+icon ="🚀"
+do = [
+  "open -a Ghostty",
+  "open -a Google\\ Chrome https://github.com"
+]
