@@ -1,4 +1,4 @@
-local map = vim.keymap.set
+local map = LazyVim.safe_keymap_set
 
 -- General
 map({ "n", "i", "s", "x" }, "<C-a>", "gg<S-v>G", { desc = "selected all" })

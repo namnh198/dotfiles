@@ -1,12 +1,15 @@
 .zshenv
+*.md
+*/*.md
 
-# macOS
+{{- if eq .chezmoi.os "darwin" }}
 .DS_Store
 **/.DS_Store
+{{- end }}
 
 # tmux plugins managed by TPM
 .config/tmux/plugins
 .config/tmux/plugins/**
 
-*.md
-**/*.md
+# zed
+.config/zed/prompts

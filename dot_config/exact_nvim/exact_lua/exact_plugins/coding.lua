@@ -1,9 +1,10 @@
 return {
   {
     "stevearc/conform.nvim",
+    lazy = true,
     opts = {
       formatters_by_ft = {
-        yaml = { "yamlfmt" }, -- Replace default with K8s-friendly formatter
+        yaml = { "yamlfmt" },
       },
       formatters = {
         yamlfmt = {
@@ -15,6 +16,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    event = { "LazyFile", "VeryLazy" },
     opts = {
       ensure_installed = {
         "graphql",

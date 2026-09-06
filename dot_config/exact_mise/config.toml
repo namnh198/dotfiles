@@ -4,7 +4,6 @@
 node = "latest"
 python = "latest"
 go = "latest"
-rust = "latest"
 
 # tools
 gh = "latest"

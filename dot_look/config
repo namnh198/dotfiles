@@ -2,7 +2,7 @@
 # Generated on first launch. Edit values and press Cmd+Shift+; to reload.
 
 # Backend indexing
-app_scan_roots=/Applications,/System/Applications,/System/Applications/Utilities,/System/Library/CoreServices/Applications,/System/Library/CoreServices/Finder.app/Contents/Applications,/System/Cryptexes/App/System/Applications
+app_scan_roots=/Applications,/System/Applications,/System/Applications/Utilities,/System/Library/CoreServices/Applications,/System/Library/CoreServices/Finder.app/Contents/Applications
 app_scan_depth=3
 app_exclude_paths=
 app_exclude_names=
@@ -71,3 +71,6 @@ super_actions_enabled=true
 ollama_host=http://localhost:11434
 ollama_model=gemma4:e4b-mlx
 ai_allow_remote_context=false
+
+# Added by look update
+query_retention_seconds=5

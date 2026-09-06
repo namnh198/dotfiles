@@ -2,8 +2,9 @@ add_newline = false
 format = """$directory$character"""
 palette = "catppuccin_mocha"
 right_format = """$all"""
-scan_timeout = 1000
-command_timeout = 1000
+scan_timeout = 100
+command_timeout = 500
+follow_symlinks = false
 
 [character]
 vicmd_symbol = "[N] >>>"
@@ -12,9 +13,16 @@ success_symbol = "[➜](bold green)"
 
 [directory]
 read_only = " 󰍁"
+style = "teal"
+format = "[$path ]($style)"
+truncation_length = 4
 
 [directory.substitutions]
-'~/Developer' = 'work-project'
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+"Developer" = "󰲋 "
 
 [fill]
 symbol = " "
@@ -24,7 +32,9 @@ format = "[$symbol$branch(:$remote_branch)]($style) "
 symbol = " "
 
 [golang]
-format = '[  ](bold lavender)'
+symbol = ""
+format = "[ $symbol( $version) ]($style)"
+detect_files = ["go.mod"]
 
 [docker_context]
 disabled = true
