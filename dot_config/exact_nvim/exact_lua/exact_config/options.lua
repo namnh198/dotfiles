@@ -1,23 +1,27 @@
 local o = vim.opt
 
+-- vim.g.clipboard = {
+--   name = "custom",
+--   copy = {
+--     ["+"] = "pbcopy",
+--     ["*"] = "pbcopy",
+--   },
+--   paste = {
+--     ["+"] = "pbpaste",
+--     ["*"] = "pbpaste",
+--   },
+--   cache_enabled = 0,
+-- }
+
 vim.g.ai_cmp = false
 
--- Make sure all keymaps silent by default
-local map = vim.keymap.set
----@diagnostic disable-next-line: duplicate-set-field
-vim.keymap.set = function(mode, lhs, rhs, opts)
-  opts = opts or {}
-  opts.silent = opts.silent ~= false
-  return map(mode, lhs, rhs, opts)
-end
-
--- Swap
+-- Swap and backup
 o.swapfile = false
+o.backup = false
+o.undodir = vim.fn.stdpath("data") .. "/undodir"
+o.undofile = true
+o.undolevels = 10000
 
 -- Text wrapping
 o.wrap = true
 o.breakindent = true
-
--- Search
-o.ignorecase = true
-o.smartcase = true
