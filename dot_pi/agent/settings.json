@@ -4,7 +4,7 @@
   "defaultThinkingLevel": "medium",
   "editorPaddingX": 1,
   "externalEditor": "zed --wait",
-  "lastChangelogVersion": "0.84.3",
+  "lastChangelogVersion": "0.85.1",
   "packages": [
     "npm:@ollama/pi-web-search",
     "npm:pi-mcp-adapter",

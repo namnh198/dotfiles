@@ -10,3 +10,4 @@ gh = "latest"
 
 # npm tools
 "npm:pnpm" = "latest"
+"npm:@earendil-works/pi-coding-agent" = "latest"
