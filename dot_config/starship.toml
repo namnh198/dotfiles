@@ -18,11 +18,7 @@ format = "[$path ]($style)"
 truncation_length = 4
 
 [directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
-"Developer" = "󰲋 "
+"Developer" = "works"
 
 [fill]
 symbol = " "
