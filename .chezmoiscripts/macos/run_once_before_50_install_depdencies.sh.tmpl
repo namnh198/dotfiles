@@ -1,6 +1,8 @@
 {{ if eq .chezmoi.os "darwin" -}}
 #!/bin/bash
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 brew bundle --file=/dev/stdin <<EOF
 brew "git"
 brew "lazygit"
@@ -18,12 +20,14 @@ brew "jq"
 brew "tmux"
 brew "zoxide"
 brew "neovim"
+brew "mise"
 brew "ollama"
 cask "orbstack"
 cask "bitwarden"
 cask "ghostty"
 cask "google-chrome"
 cask "mac-mouse-fix"
+cask "zed"
 cask "visual-studio-code"
 cask "xkey"
 tap "kunkka19xx/tap", trusted: true
