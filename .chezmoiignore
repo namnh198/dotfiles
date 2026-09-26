@@ -11,5 +11,8 @@
 .config/tmux/plugins
 .config/tmux/plugins/**
 
+# neovim
+.config/nvim/lazy-lock.json
+
 # zed
 .config/zed/prompts
