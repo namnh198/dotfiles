@@ -4,4 +4,26 @@ restart_app() {
   sleep 1
   open -a "$1"
 }
+
+ide() {
+  local session="${1:-${PWD:t}}"
+
+  # tmux session names should not contain "." or ":"
+  session="${session//[.: ]/_}"
+
+  if tmux has-session -t "$session" 2>/dev/null; then
+    if [[ -n "$TMUX" ]]; then
+       tmux switch-client -t "$session"
+     else
+       tmux attach-session -t "$session"
+    fi
+  else
+    if [[ -n "$TMUX" ]]; then
+      tmux new-session -d -s "$session" -c "$PWD"
+      tmux switch-client -t "$session"
+    else
+      tmux new-session -s "$session" -c "$PWD"
+    fi
+  fi
+}
 {{- end }}

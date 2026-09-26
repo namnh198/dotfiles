@@ -8,6 +8,7 @@ export VISUAL="nvim"
 export GOPATH="${XDG_DATA_HOME:-${HOME}/.local/share}/go"
 export BAT_THEME="Catppuccin Mocha"
 export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
+export MOLE_ENABLE_DISK_VERIFY=1
 
 # History
 HISTSIZE=50000
