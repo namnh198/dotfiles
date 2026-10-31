@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": ["Bash(npm run *)", "Bash(git commit *)", "Bash(openspec *)"],
+    "deny": ["Bash(git push *)", "Edit(**/app/etc/env.php)", "Edit(**/.env*)"]
+  },
+  "model": "opus",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    },
+    "claude-sonnet-5-5": {
+      "effortLevel": "high"
+    }
+  },
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true,
+    "ponytail@ponytail": true
+  },
+  "extraKnownMarketplaces": {
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    }
+  },
+  "sandbox": {
+    "enabled": true,
+    "allowUnsandboxedCommands": true
+  },
+  "pluginConfigs": {
+    "ponytail@ponytail": {
+      "options": {
+        "ledger": true,
+        "sendNames": true
+      }
+    }
+  },
+  "theme": "dark-ansi",
+  "editorMode": "normal",
+  "preferredNotifChannel": "auto"
+}

@@ -539,4 +539,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/linux,macos,windows,dotenv,phpstorm,visualstudiocode,node,go,python
+**/.claude/settings.local.json
