@@ -52,8 +52,6 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':completion:*:git-checkout:*' sort false
 
-autoload -Uz compinit && compinit
-
 ZSH_FUNCTIONS_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/zsh_functions.d"
 if [[ -d $ZSH_FUNCTIONS_DIR ]]; then
   for config_file in $ZSH_FUNCTIONS_DIR/*.zsh; do
@@ -62,10 +60,10 @@ if [[ -d $ZSH_FUNCTIONS_DIR ]]; then
   unset config_file
 fi
 
+autoload -Uz compinit && compinit
+
 eval "$(zoxide init zsh --cmd cd)"
 eval "$(mise activate zsh)"
 eval "$(fzf --zsh)"
-
-# Aliases
 
 [[ -r ~/.zprofile ]] && source ~/.zprofile
