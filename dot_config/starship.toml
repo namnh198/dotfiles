@@ -18,7 +18,7 @@ format = "[$path ]($style)"
 truncation_length = 4
 
 [directory.substitutions]
-"Developer" = "works"
+"Developer" = "dev"
 
 [fill]
 symbol = " "
