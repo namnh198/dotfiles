@@ -77,3 +77,7 @@ query_retention_seconds=5
 
 # Added by look update
 launcher_hotkey=cmd+space
+
+# Added by look update
+hints_enabled=true
+search_placeholder=Type whatever you want
