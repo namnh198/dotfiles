@@ -1,43 +1,42 @@
 {
+  "cli_default_open_behavior": "existing_window",
+  "agent_servers": {
+    "claude-acp": {
+      "default_config_options": {
+        "mode": "bypassPermissions"
+      },
+      "type": "registry"
+    },
+  },
   "agent": {
-    "tool_permissions": {
-      "tools": {
-        "terminal": {
-          "default": "allow"
-        }
-      }
+    "threads_sidebar": {
+      "position": "right",
     },
     "default_profile": "write",
-    "default_model": {
-      "provider": "ollama",
-      "model": "qwen3.8:27b-mlx",
-      "enable_thinking": true
-    },
-    "sidebar_side": "right",
-    "dock": "right"
+    "dock": "right",
   },
   "project_panel": {
     "dock": "left",
-    "hide_gitignore": false
+    "hide_gitignore": false,
   },
   "git_panel": {
     "group_by": "staging",
     "tree_view": true,
-    "dock": "left"
+    "dock": "left",
   },
   "edit_predictions": {
     "provider": "copilot",
     "copilot": {
-      "enable_next_edit_suggestions": true
-    }
+      "enable_next_edit_suggestions": true,
+    },
   },
   "vim_mode": false,
   "vim": {
     "use_smartcase_find": true,
-    "toggle_relative_line_numbers": true
+    "toggle_relative_line_numbers": true,
   },
   "session": {
-    "trust_all_worktrees": true
+    "trust_all_worktrees": true,
   },
   "base_keymap": "JetBrains",
   "tab_size": 2,
@@ -45,13 +44,13 @@
   "buffer_font_size": 13,
   "tabs": {
     "file_icons": true,
-    "git_status": true
+    "git_status": true,
   },
   "soft_wrap": "editor_width",
   "preferred_line_length": 120,
   "terminal": {
     "option_as_meta": true,
-    "cursor_shape": "bar"
+    "cursor_shape": "bar",
   },
   "autosave": "on_window_change",
   "format_on_save": "on",
@@ -59,17 +58,17 @@
   "icon_theme": {
     "mode": "dark",
     "light": "Material Icon Theme",
-    "dark": "Material Icon Theme"
+    "dark": "Material Icon Theme",
   },
   "theme": {
     "mode": "dark",
     "light": "Catppuccin Latte - No Italics",
-    "dark": "Catppuccin Mocha - No Italics"
+    "dark": "Catppuccin Mocha - No Italics",
   },
   "title_bar": {
     "show_user_picture": true,
     "show_branch_status_icon": true,
-    "show_branch_name": true
+    "show_branch_name": true,
   },
   "file_scan_exclusions": [
     "**/.git",
@@ -85,11 +84,11 @@
     "**/.next/**",
     "**/vendor/**",
     "**/node_modules/**",
-    "**/*.tsbuildinfo"
+    "**/*.tsbuildinfo",
   ],
   "file_types": {
     "env": [".env.*", "*.vars"],
-    "TOML": ["*.tmTheme"]
+    "TOML": ["*.tmTheme"],
   },
   "auto_install_extensions": {
     "html": true,
@@ -98,7 +97,7 @@
     "toml": true,
     "catppuccin": true,
     "material-icon-theme": true,
-    "env": true
+    "env": true,
   },
   "show_whitespaces": "none",
   "lsp": {
@@ -106,25 +105,25 @@
       "settings": {
         "typescript": {
           "updateImportsOnFileMove": {
-            "enabled": "always"
-          }
+            "enabled": "always",
+          },
         },
         "javascript": {
           "updateImportsOnFileMove": {
-            "enabled": "always"
-          }
-        }
+            "enabled": "always",
+          },
+        },
       },
-      "enable_lsp_tasks": true
+      "enable_lsp_tasks": true,
     },
     "vscode-css-language-server": {
       "settings": {
         "css": {
           "lint": {
-            "unknownAtRules": "ignore"
-          }
-        }
-      }
-    }
-  }
+            "unknownAtRules": "ignore",
+          },
+        },
+      },
+    },
+  },
 }

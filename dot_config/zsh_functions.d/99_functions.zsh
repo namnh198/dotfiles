@@ -1,10 +1,3 @@
-{{- if eq .chezmoi.os "darwin" }}
-restart_app() {
-  osascript -e 'tell application "'"$1"'" to quit'
-  sleep 1
-  open -a "$1"
-}
-
 ide() {
   local session="${1:-${PWD:t}}"
 
@@ -26,4 +19,3 @@ ide() {
     fi
   fi
 }
-{{- end }}

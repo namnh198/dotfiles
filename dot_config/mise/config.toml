@@ -5,10 +5,9 @@ pnpm = "latest"
 python = "latest"
 go = "latest"
 gh = "latest"
-
-# npm tools
-"npm:@earendil-works/pi-coding-agent" = "latest"
-
+claude = "latest"
+"npm:@fission-ai/openspec" = "latest"
 [settings]
 idiomatic_version_file_enable_tools = ['pnpm']
+minimum_release_age = "0s"
 
