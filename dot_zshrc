@@ -10,7 +10,6 @@ export BAT_THEME="Catppuccin Mocha"
 export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
 export MOLE_ENABLE_DISK_VERIFY=1
 
-# History
 HISTSIZE=50000
 SAVEHIST=$HISTSIZE
 setopt appendhistory
@@ -33,7 +32,6 @@ zinit ice as"command" from"gh-r" \
   atpull"%atclone" src"init.zsh"
 zinit light starship/starship
 
-
 zinit wait lucid light-mode for \
   atinit"zicompinit; zicdreplay" \
     zdharma-continuum/fast-syntax-highlighting \
@@ -52,12 +50,16 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':completion:*:git-checkout:*' sort false
 
-ZSH_FUNCTIONS_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/zsh_functions.d"
-if [[ -d $ZSH_FUNCTIONS_DIR ]]; then
-  for config_file in $ZSH_FUNCTIONS_DIR/*.zsh; do
+ZSH_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/zsh"
+if [[ -d $ZSH_DIR ]]; then
+  for config_file in $ZSH_DIR/*.zsh; do
     [[ -r "$config_file" ]] && source "$config_file"
   done
   unset config_file
+fi
+
+if [[ -d "$ZSH_DIR/completions" ]]; then
+  fpath=("$ZSH_DIR/completions" $fpath)
 fi
 
 autoload -Uz compinit && compinit
