@@ -1,0 +1,22 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+# install mise tool
+mise install
+
+# build bat theme
+bat cache --build
+
+# install claude code
+curl -fsSL https://claude.ai/install.sh | bash
+
+# install lodev
+curl -fsSL https://raw.githubusercontent.com/namnh198/lodev/main/install.sh | PREFIX="$HOME/.local" sh
+
+# reload zsh
+exec zsh
+
+# install fsh theme
+fast-theme XDG:catppuccin-mocha
+
+{{- end }}
