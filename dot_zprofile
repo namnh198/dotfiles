@@ -1,3 +1,39 @@
 #!/usr/bin/env zsh
 
+alias c='clear'
+alias g='git'
+alias tm='tmux'
+alias lz='lazygit'
+alias chez='chezmoi'
+alias ..='cd ..'
+alias eza='eza --icons=always --color=always --group-directories-first --header'
+alias la='eza -a'
+alias ll='eza -la'
+alias lt='eza --tree'
+alias vimdiff='nvim -d'
+alias vim='nvim'
+alias vi='nvim'
+
+ide() {
+  local session="${1:-${PWD:t}}"
+
+  # tmux session names should not contain "." or ":"
+  session="${session//[.: ]/_}"
+
+  if tmux has-session -t "$session" 2>/dev/null; then
+    if [[ -n "$TMUX" ]]; then
+       tmux switch-client -t "$session"
+     else
+       tmux attach-session -t "$session"
+    fi
+  else
+    if [[ -n "$TMUX" ]]; then
+      tmux new-session -d -s "$session" -c "$PWD"
+      tmux switch-client -t "$session"
+    else
+      tmux new-session -s "$session" -c "$PWD"
+    fi
+  fi
+}
+
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
