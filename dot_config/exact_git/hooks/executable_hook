@@ -1,0 +1,19 @@
+#!/bin/sh
+# Global git hook: core.hooksPath points at this folder, and every hook name links to this file.
+# pre-commit refuses staged secrets (gitleaks); then each hook runs the repo's own .git/hooks/<name>,
+# which core.hooksPath would otherwise skip.
+name=$(basename "$0")
+if [ "$name" = pre-commit ]; then
+  PATH="$PATH:/opt/homebrew/bin:/usr/local/bin" # GUI git clients start without the shell's PATH
+  if ! command -v gitleaks >/dev/null 2>&1; then
+    echo "pre-commit: gitleaks is not installed (brew install gitleaks); nothing was committed" >&2
+    exit 1
+  fi
+  # False positive: a `gitleaks:allow` comment on the line, or its fingerprint in .gitleaksignore.
+  gitleaks git --pre-commit --staged --redact --no-banner --verbose || exit 1
+fi
+repo_hook="$(git rev-parse --git-common-dir)/hooks/$name"
+if [ -x "$repo_hook" ]; then
+  exec "$repo_hook" "$@"
+fi
+exit 0

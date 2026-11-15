@@ -540,3 +540,11 @@ $RECYCLE.BIN/
 *.lnk
 
 **/.claude/settings.local.json
+
+**/.claude/.cc-writes/
+
+# superpowers specs/plans: local only
+docs/superpowers/
+docs/agents/
+.superpowers/
+openspecs/
