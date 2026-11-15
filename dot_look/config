@@ -2,10 +2,10 @@
 # Generated on first launch. Edit values and press Cmd+Shift+; to reload.
 
 # Backend indexing
-app_scan_roots=/Applications,/System/Applications,/System/Applications/Utilities,/System/Library/CoreServices/Applications,/System/Library/CoreServices/Finder.app/Contents/Applications
+app_scan_roots=/Applications,/System/Applications,/System/Applications/Utilities,/System/Library/CoreServices/Applications,/System/Library/CoreServices/Finder.app/Contents/Applications,~/Applications
 app_scan_depth=3
 app_exclude_paths=
-app_exclude_names=
+app_exclude_names=Claude Code URL Handler
 file_scan_roots=Desktop,Documents,Downloads
 file_scan_extra_roots=/Users/namnh198/Developer
 file_scan_depth=5
@@ -46,6 +46,7 @@ alias_te=Ghostty|Wezterm|Terminal
 alias_chat=Slack|Discord|Telegram|Messages
 alias_music=Spotify|Apple Music|Music
 alias_brow=Safari|Arc|Google Chrome|Chrome|Firefox|Brave|Dia
+alias_ai=Claude|Herdr
 
 settings_blur_multiplier=0.50
 
@@ -81,3 +82,6 @@ launcher_hotkey=cmd+space
 # Added by look update
 hints_enabled=true
 search_placeholder=Type whatever you want
+
+# Added by look update
+translate_languages=vi,en,ja
