@@ -1,6 +1,8 @@
 .zshenv
 *.md
 */*.md
+!*/CLAUDE.md
+!*/AGENTS.md
 
 {{- if eq .chezmoi.os "darwin" }}
 .DS_Store

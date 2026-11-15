@@ -1,11 +1,30 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
     "allow": [
-      "Bash(npm run *)",
-      "Bash(git commit *)",
-      "Bash(openspec *)"
+      "Bash(make test)",
+      "Bash(make build)",
+      "Bash(rg *)",
+      "Bash(fd *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git show *)",
+      "Bash(docker ps *)",
+      "Bash(docker images *)",
+      "Bash(docker logs *)",
+      "Bash(lodev *)"
     ],
     "deny": [
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(git add -f *)",
+      "Bash(git commit --amend *)",
+      "Bash(gh secret *)",
+      "Bash(gh release *)",
+      "Bash(git tag *)"
+    ],
+    "ask": [
       "Bash(git push *)",
       "Edit(**/app/etc/env.php)",
       "Edit(**/.env*)"
@@ -14,7 +33,11 @@
   "model": "opus",
   "enabledPlugins": {
     "superpowers@claude-plugins-official": true,
-    "ponytail@ponytail": true
+    "ponytail@ponytail": true,
+    "gopls-lsp@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "mattpocock-skills@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "ponytail": {
@@ -30,7 +53,8 @@
   },
   "modelSettings": {
     "claude-opus-5-5": {
-      "effortLevel": "high"
+      "effortLevel": "high",
+      "autoCompactWindow": 600000
     },
     "claude-sonnet-5-5": {
       "effortLevel": "high"
@@ -44,7 +68,9 @@
       }
     }
   },
+  "skipDangerousModePermissionPrompt": true,
   "theme": "auto",
   "editorMode": "normal",
-  "preferredNotifChannel": "auto"
+  "preferredNotifChannel": "auto",
+  "agentPushNotifEnabled": true
 }
