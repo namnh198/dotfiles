@@ -17,6 +17,7 @@ launch_at_login=true
 skip_dir_names=node_modules,target,build,dist,library,applications,old firefox data,deriveddata,pods,vendor,out,coverage,tmp,cache,venv
 
 # UI theme
+ui_theme=liquid
 ui_tint_red=0.10
 ui_tint_green=0.13
 ui_tint_blue=0.20
@@ -45,43 +46,24 @@ alias_term=Terminal|iTerm|iTerm2|Ghostty|WezTerm|Alacritty|Kitty|Warp
 alias_te=Ghostty|Wezterm|Terminal
 alias_chat=Slack|Discord|Telegram|Messages
 alias_music=Spotify|Apple Music|Music
-alias_brow=Safari|Arc|Google Chrome|Chrome|Firefox|Brave|Dia
-alias_ai=Claude|Herdr
-
-settings_blur_multiplier=0.50
-
-pomo_sessions=focus:30:Deep%20Work,break:5:Short%20Break,focus:30:Review,break:5:Short%20Break,focus:30:Wrap%20Up,break:15:Long%20Break
-pomo_timer_style=modern
-
-text_editor=nvim
-code_editor=zed
-terminal=ghostty
-file_manager=finder
-
-# Added by look update
+alias_brow=Safari|Arc|Google Chrome|Chrome|Firefox|Brave|Dia|Ardia
+alias_ai=Claude
 ignored_patterns_sample=
 clipboard_history_limit=10
 
-# Added by look update
-localized_app_names=false
-ui_theme=liquid
-inner_gap=10
+# AI
 ai_enabled=true
 ai_provider=appleIntelligence
-super_actions_enabled=true
+ai_allow_remote_context=false
 ollama_host=http://localhost:11434
 ollama_model=gemma4:e4b-mlx
-ai_allow_remote_context=false
 
 # Added by look update
+localized_app_names=false
+inner_gap=10
+super_actions_enabled=true
 query_retention_seconds=5
-
-# Added by look update
 launcher_hotkey=cmd+space
-
-# Added by look update
 hints_enabled=true
 search_placeholder=Type whatever you want
-
-# Added by look update
 translate_languages=vi,en,ja
