@@ -8,7 +8,6 @@ export VISUAL="nvim"
 export GOPATH="${XDG_DATA_HOME:-${HOME}/.local/share}/go"
 export BAT_THEME="Catppuccin Mocha"
 export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
-export GOPATH="${XDG_DATA_HOME:-${HOME}/.local/share}/go"
 export CLAUDE_CODE_AUTO_COMPACT_WINDOW=600000
 export LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:\
 *.tar=01;31:*.zip=01;31:*.7z=01;31:*.rar=01;31:*.gz=01;31:\
@@ -42,52 +41,82 @@ if [[ -d "$HOME/.local/bin" ]]; then
   export PATH="$HOME/.local/bin:$PATH"
 fi
 
+# Cache the output of slow `tool init`-style commands and source the cached
+# (and zcompiled) copy. Regenerated automatically when the binary is updated.
+#   _cache_eval <name> <command> [args...]
+_cache_eval() {
+  local name=$1; shift
+  local bin=${commands[$1]:-$1}
+  local cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/${name}.zsh"
+  if [[ ! -s $cache || $bin -nt $cache ]]; then
+    mkdir -p "${cache:h}"
+    "$@" >| "$cache" 2>/dev/null
+    zcompile "$cache"
+  fi
+  source "$cache"
+}
+
 if [[ -f "/opt/homebrew/bin/brew" ]]; then
-  # If you're using macOS, you'll want this enabled
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  # macOS (Apple Silicon)
+  _cache_eval brew-shellenv /opt/homebrew/bin/brew shellenv
 fi
 
 if [[ -d "${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/site-functions" ]]; then
   FPATH="${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/site-functions:${FPATH}"
 fi
 
-# installing zinit
+# ---------------------------------------------------------------------------
+# zinit
+# ---------------------------------------------------------------------------
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
+# Fast compinit: -C skips the fpath security scan + dump regeneration.
+# After adding/removing completion plugins run: rm -f ~/.zcompdump* && exec zsh
+typeset -gA ZINIT
+ZINIT[COMPINIT_OPTS]=-C
+
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# installing starship
+# starship (prompt: loaded immediately, not turbo)
 zinit ice as"command" from"gh-r" \
   atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
   atpull"%atclone" src"init.zsh"
 zinit light starship/starship
 
-zinit wait lucid light-mode for \
+# Turbo block. Order matters:
+#   1. completion sources (add to fpath)
+#   2. compinit (atinit of fzf-tab) + replay of queued compdefs
+#   3. fzf-tab (after compinit, before widget-wrapping plugins)
+#   4. autosuggestions, then syntax highlighting (last)
+zinit light-mode wait lucid for \
+  blockf atpull'zinit creinstall -q .' \
+    zsh-users/zsh-completions \
+    wbingli/zsh-claudecode-completion \
   atinit"zicompinit; zicdreplay" \
-    zdharma-continuum/fast-syntax-highlighting \
+    Aloxaf/fzf-tab \
   atload"_zsh_autosuggest_start" \
     zsh-users/zsh-autosuggestions \
-  blockf atpull'zinit creinstall -q .' \
-    zsh-users/zsh-completions
+    zdharma-continuum/fast-syntax-highlighting
 
-# Add snippets
-zinit snippet OMZP::git
-zinit snippet OMZP::sudo
-zinit snippet OMZP::command-not-found
-zinit snippet https://raw.githubusercontent.com/catppuccin/fzf/refs/heads/main/themes/catppuccin-fzf-mocha.sh
-zinit light Aloxaf/fzf-tab
+# Snippets (turbo, after the block above)
+zinit light-mode wait lucid for \
+  OMZP::git \
+  OMZP::sudo \
+  OMZP::command-not-found \
+  https://raw.githubusercontent.com/catppuccin/fzf/refs/heads/main/themes/catppuccin-fzf-mocha.sh
 
+# ---------------------------------------------------------------------------
+# Completion styles
+# ---------------------------------------------------------------------------
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':completion:*:git-checkout:*' sort false
-zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*:descriptions' format '[%d]'
-zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always --all --group-directories-first $realpath'
 zstyle ':fzf-tab:complete:text-editors:*' fzf-preview 'bat --color=always $realpath'
 zstyle ':fzf-tab:complete:cd:*' popup-pad 50 0
@@ -97,9 +126,13 @@ zstyle ':fzf-tab:*' use-fzf-default-opts yes
 zstyle ':fzf-tab:*' switch-group '<' '>'
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
-eval "$(zoxide init zsh --cmd cd)"
-eval "$(mise activate zsh)"
-eval "$(fzf --zsh)"
+zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache"
+
+# Cached tool init (saves ~50-150ms of forks per shell start)
+_cache_eval zoxide zoxide init zsh --cmd cd
+_cache_eval mise   mise activate zsh
+_cache_eval fzf    fzf --zsh
 
 bindkey -e
 bindkey '^[[A' history-search-backward
@@ -108,4 +141,42 @@ bindkey '^[[B' history-search-forward
 bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
 
-[[ -r ~/.zprofile ]] && source ~/.zprofile
+# ---------------------------------------------------------------------------
+# Aliases & functions (moved from .zprofile so they load in every interactive
+# shell, including non-login shells like tmux panes, without double-sourcing)
+# ---------------------------------------------------------------------------
+alias c='clear'
+alias g='git'
+alias tm='tmux'
+alias lz='lazygit'
+alias chez='chezmoi'
+alias ..='cd ..'
+alias eza='eza --icons=always --color=always --group-directories-first --header'
+alias la='eza -a'
+alias ll='eza -la'
+alias lt='eza --tree'
+alias vimdiff='nvim -d'
+alias vim='nvim'
+alias vi='nvim'
+
+ide() {
+  local session="${1:-${PWD:t}}"
+
+  # tmux session names should not contain "." or ":"
+  session="${session//[.: ]/_}"
+
+  if tmux has-session -t "$session" 2>/dev/null; then
+    if [[ -n "$TMUX" ]]; then
+      tmux switch-client -t "$session"
+    else
+      tmux attach-session -t "$session"
+    fi
+  else
+    if [[ -n "$TMUX" ]]; then
+      tmux new-session -d -s "$session" -c "$PWD"
+      tmux switch-client -t "$session"
+    else
+      tmux new-session -s "$session" -c "$PWD"
+    fi
+  fi
+}

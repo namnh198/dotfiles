@@ -1,9 +1,9 @@
 add_newline = false
 format = """$directory$character"""
 palette = "catppuccin_mocha"
-right_format = """$all"""
+right_format = """$git_branch$git_status$php$golang$nodejs$python$cmd_duration""" 
 scan_timeout = 100
-command_timeout = 500
+command_timeout = 1000
 follow_symlinks = false
 
 [character]
@@ -36,6 +36,9 @@ detect_files = ["go.mod"]
 disabled = true
 
 [bun]
+disabled = true
+
+[kubernetes]
 disabled = true
 
 [palettes.catppuccin_mocha]
