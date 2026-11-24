@@ -3,7 +3,7 @@ format = """$directory$character"""
 palette = "catppuccin_mocha"
 right_format = """$git_branch$git_status$php$golang$nodejs$python$cmd_duration""" 
 scan_timeout = 100
-command_timeout = 1000
+command_timeout = 1500
 follow_symlinks = false
 
 [character]
