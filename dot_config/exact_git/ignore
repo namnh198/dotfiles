@@ -548,3 +548,5 @@ docs/superpowers/
 docs/agents/
 .superpowers/
 openspecs/
+.agent-docs/
+CLAUDE.local.md

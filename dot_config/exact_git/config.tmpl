@@ -3,10 +3,6 @@
   ignorecase = false
   pager = delta
   hooksPath = $HOME/.config/git/hooks
-{{- if eq .chezmoi.os "darwin" }}
-  fsmonitor = true
-{{- end }}
-  untrackedCache = true
 
 [user]
   name = {{ .username | quote }}
