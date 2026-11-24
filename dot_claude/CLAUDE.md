@@ -1,156 +1,51 @@
-# CLAUDE.md
+# Global rules
 
-Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
+Bias toward caution over speed; use judgment on trivial tasks.
 
-**Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
+## Before and while coding
+- State assumptions. If a request is unclear or has several readings, name what's unclear and ask, or list the options; never pick silently. Suggest a simpler approach and push back when warranted.
+- Write the minimum code for the request: no unrequested features, single-use abstractions, configurability, or handling of impossible cases. If it could be much shorter or simpler, rewrite it.
+- Keep diffs surgical: every changed line traces to the request. Match the existing style; don't reformat, refactor or "improve" code outside the task. Remove only what your own change made unused; mention other dead code instead of deleting it.
+- Turn tasks into verifiable goals (validation → tests for invalid input, then pass; bug → failing repro test, then pass; refactor → tests pass before and after). For multi-step work, give a short plan as `step → verify: check` and loop until each check passes.
 
-## 1. Think Before Coding
+## Git
+- Never use `--force` or `--amend`. If a force push seems needed, ask me; I run it myself.
+- Throwaway scripts, fixtures and probe files go in the session scratchpad, never in the repo.
+- Every commit runs a global gitleaks pre-commit hook (`core.hooksPath=~/.config/git/hooks`). Never bypass it (`--no-verify`, `-n`, a repo-level `core.hooksPath`), edit it or remove it.
+- If gitleaks blocks a commit: report its `RuleID` and `File`, never the secret; move the value to an env var or a git-ignored `.env`; commit again. Suspected false positive → ask before adding `gitleaks:allow` or a `.gitleaksignore` entry.
 
-**Don't assume. Don't hide confusion. Surface tradeoffs.**
+## Language
+Talk to me in Vietnamese. Everything written to disk or to Jira is English: docs, specs, plans, tickets, ADRs, CONTEXT.md, code comments, commits, PR text, branch names. Keep domain terms consistent with CONTEXT.md.
 
-Before implementing:
+## Personal docs (never committed)
+- My specs, plans, tickets, ADRs, CONTEXT.md and research notes live only in `.agent-docs/` at the repo root (`specs/`, `tickets/`, `adr/`, `drafts/`), even when a skill's default path differs. It is git-ignored globally; never `git add` it.
+- Never put these conventions in tracked files (README, CLAUDE.md, AGENTS.md, docs/); if a repo needs local config, use `CLAUDE.local.md`.
 
-- State your assumptions explicitly. If uncertain, ask.
-- If multiple interpretations exist, present them - don't pick silently.
-- If a simpler approach exists, say so. Push back when warranted.
-- If something is unclear, stop. Name what's confusing. Ask.
+## Draft → preview → approve
+For every doc, spec, plan, ADR, ticket and Jira text: write it to `.agent-docs/drafts/<name>.md` (Jira: `drafts/jira/<KEY>-<n>-<slug>.md`), give me the path and a 3–5 line Vietnamese summary, open it for Markdown preview (`code -r <path>` if `code` exists), and wait for my approval before moving it into place or creating, editing, commenting on or transitioning a Jira issue. Jira searches use `maxResults: 10`.
 
-## 2. Simplicity First
-
-**Minimum code that solves the problem. Nothing speculative.**
-
-- No features beyond what was asked.
-- No abstractions for single-use code.
-- No "flexibility" or "configurability" that wasn't requested.
-- No error handling for impossible scenarios.
-- If you write 200 lines and it could be 50, rewrite it.
-
-Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
-
-## 3. Surgical Changes
-
-**Touch only what you must. Clean up only your own mess.**
-
-When editing existing code:
-
-- Don't "improve" adjacent code, comments, or formatting.
-- Don't refactor things that aren't broken.
-- Match existing style, even if you'd do it differently.
-- If you notice unrelated dead code, mention it - don't delete it.
-
-When your changes create orphans:
-
-- Remove imports/variables/functions that YOUR changes made unused.
-- Don't remove pre-existing dead code unless asked.
-
-The test: Every changed line should trace directly to the user's request.
-
-## 4. Goal-Driven Execution
-
-**Define success criteria. Loop until verified.**
-
-Transform tasks into verifiable goals:
-
-- "Add validation" → "Write tests for invalid inputs, then make them pass"
-- "Fix the bug" → "Write a test that reproduces it, then make it pass"
-- "Refactor X" → "Ensure tests pass before and after"
-
-For multi-step tasks, state a brief plan:
-
-```
-1. [Step] → verify: [check]
-2. [Step] → verify: [check]
-3. [Step] → verify: [check]
-```
-
-Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
-
----
-
-**These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
-
----
-
-## Git: never commit scratch files
-
-- Never add `--force` or `--amend` to git commands. If I want to force-push, I will do it myself. If you think a force push is needed, ask me first.
-- Throwaway check scripts, fixtures and probe files go in the session scratchpad, never inside the repo. I do NOT want test scaffolding committed.
-- Every commit passes a global gitleaks `pre-commit` hook (`core.hooksPath` = `~/.config/git/hooks`). Never bypass it (`--no-verify`, `-n`, a repo-level `core.hooksPath`) and never edit or remove it.
-- When gitleaks blocks a commit: report the `RuleID` and `File` it printed, never the secret itself; move the value out of the file (environment variable, `.env` that is git-ignored) and commit again. If you think it is a false positive, ask me before adding `gitleaks:allow` or a `.gitleaksignore` entry.
+## Skills (load them without being asked)
+- Vague feature or behavior change → `grilling` before any code (one question at a time; read the code instead of asking when you can). Settled terms and decisions → `domain-modeling` (CONTEXT.md; ADR only for hard-to-reverse trade-offs).
+- Large, clear feature → spec, then thin vertical-slice tickets with blocking edges (`to-spec`/`to-tickets` if installed); never implement it in one pass.
+- Feature or bugfix with logic → `tdd`. Bug, failing test, regression → `diagnosing-bugs` (reproduce first; no guess-fixing).
+- Open design question → `prototype`; module interfaces and seams → `codebase-design`.
+- Before saying done or opening a PR → `mattpocock-skills:code-review` on the diff against the base branch, using the plan/spec/ticket (`.agent-docs/` or Jira) as the spec; report any gap from the plan.
+- Never claim done, fixed or passing without running the relevant tests, lint and typecheck and showing the real output.
 
 ## Investigation is read-only
+Read code, logs and git history; run `SELECT` freely. Ask before any `UPDATE`/`INSERT`/`DELETE` on any database. Never change config, credentials or modules. Never touch production.
 
-- When investigating, read code, logs and git history, and run `SELECT` queries.
-- Ask me before running `UPDATE`, `INSERT` or `DELETE` sql query on any database.
-- Never change config, credentials or modules.
-- Never touch production.
+## Remote servers (staging, production)
+Never connect to them (`ssh`, `scp`, `sftp`, `rsync`), not even read-only; I run those checks myself. When one is needed, give me the exact commands, using `grep`/`find`/`tail`/`awk` (no `rg`/`fd` there), and wait for my output.
 
-## Docker execution rule:
+## lodev projects (folder contains `.lodev/config.yaml`)
+Unless I explicitly override this, never run these on the host; run them in the project's containers: `php`, `composer`, `bin/magento`, `artisan`, `wp`, `n98-magerun2`, `vendor/bin/{phpunit,phpcs,phpstan}`, `npm`/`pnpm`/`yarn`/`node` (host packages won't match the Linux container), `mysql`/`mariadb`/`mysqldump`.
+- Project info: `.lodev/config.yaml` (`name`, `type`, `services`, `working_dir`, default `/app`); `lodev describe` prints URLs, services, DB name and credentials.
+- Running? `docker ps`: web `lodev-<name>-web`; shared `lodev-{mysql,mariadb,redis,opensearch,mailpit}`. Not running → ask before `lodev start`.
+- Preferred, from the project folder: `lodev exec <cmd>` or shortcuts `lodev <php|composer|npm|node|pnpm|yarn|grunt|artisan|wp|magento|n98> …` (`lodev magento x` = `php bin/magento x`). They run as the project user in `working_dir`.
+- Raw `docker exec` only when lodev can't. Its default is root in `/` (leaves root-owned files), so pass both: get them with `docker exec lodev-<name>-web printenv LODEV_USER LODEV_WORKDIR`, then `docker exec -i -u <user> -w <workdir> lodev-<name>-web <cmd>`.
+- Database: MySQL (`lodev-mysql`, client `mysql`) or MariaDB (`lodev-mariadb`, client `mariadb`) per `services`. Root password `root` (also `$MYSQL_ROOT_PASSWORD`/`$MARIADB_ROOT_PASSWORD`), e.g. `docker exec -i lodev-mysql sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD" -e "SHOW DATABASES;"'`. DB name is usually the project name with `-`→`_`, sometimes `<name>_staging`; the app config (`.env`, `app/etc/env.php`, `wp-config.php`) is the truth; unsure → ask.
+- Dumps: `lodev db-export`, `lodev db-import -f dump.sql`; run `lodev snapshot create` before anything risky.
 
-Projects run with [lodev](https://github.com/namnh198/lodev): a project is a folder with `.lodev/config.yaml`.
-In one, never run these on the host unless the user explicitly overrides this rule; run them in the
-project's containers:
-
-- `php`, `composer`, `bin/magento`, `artisan`, `wp`, `n98-magerun2`
-- `vendor/bin/phpunit`, `vendor/bin/phpcs`, `vendor/bin/phpstan`
-- `npm`, `pnpm`, `yarn`, `node`: the container installs Linux packages, the host's would not match
-- `mysql`, `mariadb`, `mysqldump`
-
-### Find the project
-
-- `.lodev/config.yaml`: `name` (the project), `type`, `services`, `working_dir` (default `/app`).
-- `lodev describe` (from the project folder) prints its URLs, services, database name and credentials.
-- `docker ps` shows whether it runs: web container `lodev-<name>-web`, shared `lodev-mysql`,
-  `lodev-mariadb`, `lodev-redis`, `lodev-opensearch`, `lodev-mailpit`. Not running: ask before `lodev start`.
-
-### Commands in the web container (preferred: lodev)
-
-From the project folder (`cd` there first), lodev runs as the project's user in `working_dir`:
-
-```bash
-lodev exec php -v                  # any command
-lodev composer install             # shortcuts: php composer npm node pnpm yarn grunt artisan wp magento n98
-lodev magento cache:flush          # = php bin/magento cache:flush
-lodev exec vendor/bin/phpunit
-```
-
-Raw `docker exec` only when lodev cannot (e.g. outside the folder). Pass the user and the folder:
-the default is root in `/`, which leaves root-owned files in the project.
-
-```bash
-docker exec lodev-magento2-web printenv LODEV_USER LODEV_WORKDIR    # e.g. kuroko /app
-docker exec -i -u kuroko -w /app lodev-magento2-web php bin/magento -v
-```
-
-### Database
-
-- MySQL `lodev-mysql` (client `mysql`) or MariaDB `lodev-mariadb` (client `mariadb`): the project's
-  `services` says which. Root password is `root`, also in the container's `$MYSQL_ROOT_PASSWORD` /
-  `$MARIADB_ROOT_PASSWORD`.
-- Database name: the project name with `-` as `_` (`my-shop` → `my_shop`), sometimes `<name>_staging`;
-  the app's config is the truth (`.env`, `app/etc/env.php`, `wp-config.php`). Not sure → ask me.
-- Dumps and loads: `lodev db-export` / `lodev db-import -f dump.sql`, and `lodev snapshot create` before
-  anything risky.
-
-```bash
-docker exec -i lodev-mysql sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD" -e "SHOW DATABASES;"'
-docker exec -i lodev-mariadb sh -c 'exec mariadb -uroot -p"$MARIADB_ROOT_PASSWORD" -e "SHOW DATABASES;"'
-```
-
-Investigation stays read-only (above): `SELECT` freely, ask before `UPDATE` / `INSERT` / `DELETE`.
-
-## Tool Selection Guide
-
-| Task                      | Use            | Instead of        |
-| ------------------------- | -------------- | ----------------- |
-| Search text in code files | `rg` (ripgrep) | `grep`, `grep -r` |
-| Find files by name/path   | `fd`           | `find`, `ls -R`   |
-
-### Quick Examples
-
-```bash
-rg 'def \w+\(' -t py src/          # rg: text search in Python files
-rg -c 'TODO' -t js | wc -l         # rg: count first, then drill down
-fd -g '*.test.ts' --changed-within 1d  # fd: -g for compound suffixes (NOT -e)
-fd -g '*_test.go' -X rg 'func Test'   # fd+rg: find files, verify contents
-```
+## Local tools
+On my machine, search text with `rg` (not `grep`) and find files with `fd` (not `find`/`ls -R`). For compound suffixes use `fd -g '*.test.ts'`, not `-e`.

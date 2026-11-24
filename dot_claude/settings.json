@@ -16,26 +16,40 @@
       "Bash(lodev *)"
     ],
     "deny": [
-      "Bash(git push --force *)",
+      "Bash(git push *--force*)",
       "Bash(git push -f *)",
+      "Bash(git push * -f)",
+      "Bash(git push * -f *)",
+      "Bash(git add *--force*)",
       "Bash(git add -f *)",
-      "Bash(git commit --amend *)",
+      "Bash(git add * -f)",
+      "Bash(git add * -f *)",
+      "Bash(git commit *--amend*)",
+      "Bash(git commit *--no-verify*)",
+      "Bash(git commit -n *)",
+      "Bash(git commit * -n)",
+      "Bash(git commit * -n *)",
       "Bash(gh secret *)",
       "Bash(gh release *)",
-      "Bash(git tag *)"
+      "Bash(git tag *)",
+      "Bash(ssh *)",
+      "Bash(scp *)",
+      "Bash(sftp *)"
     ],
     "ask": [
       "Bash(git push *)",
+      "Bash(git *core.hooksPath*)",
+      "Bash(rsync *)",
       "Edit(**/app/etc/env.php)",
       "Edit(**/.env*)"
     ]
   },
   "model": "opus",
   "enabledPlugins": {
-    "superpowers@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": false,
     "ponytail@ponytail": true,
-    "gopls-lsp@claude-plugins-official": true,
-    "frontend-design@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": false,
+    "frontend-design@claude-plugins-official": false,
     "code-review@claude-plugins-official": true,
     "mattpocock-skills@claude-plugins-official": true
   },
@@ -53,11 +67,12 @@
   },
   "modelSettings": {
     "claude-opus-5-5": {
-      "effortLevel": "high",
-      "autoCompactWindow": 600000
+      "effortLevel": "medium",
+      "autoCompactWindow": 500000
     },
     "claude-sonnet-5-5": {
-      "effortLevel": "high"
+      "effortLevel": "high",
+      "autoCompactWindow": 500000
     }
   },
   "pluginConfigs": {
