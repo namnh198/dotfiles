@@ -104,8 +104,6 @@ zinit light-mode wait lucid for \
 
 # Snippets (turbo, after the block above)
 zinit light-mode wait lucid for \
-  OMZP::git \
-  OMZP::sudo \
   OMZP::command-not-found \
   https://raw.githubusercontent.com/catppuccin/fzf/refs/heads/main/themes/catppuccin-fzf-mocha.sh
 
