@@ -25,11 +25,18 @@
     }
   },
   "agent": {
+    "sandbox_permissions": {
+      "allow_fs_write_all": true,
+      "network_hosts": ["*.test", "*.local"],
+      "allow_all_hosts": true
+    },
     "threads_sidebar": {
       "position": "right"
     },
     "default_profile": "write",
-    "dock": "right"
+    "dock": "right",
+    "expand_terminal_card": false,
+    "expand_edit_card": false
   },
   "project_panel": {
     "dock": "left",
