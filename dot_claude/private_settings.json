@@ -40,17 +40,21 @@
       "Bash(git push *)",
       "Bash(git *core.hooksPath*)",
       "Bash(rsync *)",
+      "Read(**/app/etc/env.php)",
       "Edit(**/app/etc/env.php)",
-      "Edit(**/.env*)"
+      "Read(**/.env*)",
+      "Edit(**/.env*)",
+      "Bash(lodev db-import*)",
+      "Bash(lodev start*)"
     ]
   },
   "model": "opus",
   "enabledPlugins": {
     "superpowers@claude-plugins-official": false,
     "ponytail@ponytail": true,
-    "gopls-lsp@claude-plugins-official": false,
-    "frontend-design@claude-plugins-official": false,
     "code-review@claude-plugins-official": true,
+    "cc-plugin-you-should-know@builtin": true,
+    "mattpocock-skills@synced": false,
     "mattpocock-skills@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
@@ -78,7 +82,7 @@
   "pluginConfigs": {
     "ponytail@ponytail": {
       "options": {
-        "ledger": true,
+        "ledger": false,
         "sendNames": true
       }
     }
